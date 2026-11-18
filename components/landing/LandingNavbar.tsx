@@ -289,21 +289,22 @@ export function LandingNavbar({ user = null }: { user?: any }) {
 
             <SheetContent 
               side="right" 
-              className="w-[90vw] max-w-[380px] bg-[#FAF7EE] p-5 sm:p-6 flex flex-col justify-between border-l border-[#0B3B24]/10 shadow-2xl overflow-y-auto"
+              className="w-[90vw] max-w-[390px] bg-[#FAF7EE] p-5 sm:p-6 flex flex-col justify-between border-l border-[#0B3B24]/10 shadow-2xl overflow-hidden"
             >
-              <div className="space-y-5">
-                
-                {/* Header inside Sheet */}
-                <div className="flex items-center justify-between pb-3.5 border-b border-[#0B3B24]/10">
+              {/* Header inside Sheet (pr-10 gives clean clearance for the close X button) */}
+              <div className="flex items-center justify-between pb-3.5 border-b border-[#0B3B24]/10 pr-10 shrink-0">
+                <div className="flex items-center gap-2">
                   <BrandLogo size="md" />
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#0B3B24]/10 text-[#0B3B24] text-[10px] font-extrabold uppercase tracking-wider">
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#0B3B24]/10 text-[#0B3B24] text-[9.5px] font-extrabold uppercase tracking-wider">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#00ab14] animate-pulse" />
                     OS v2.4
                   </span>
                 </div>
+              </div>
 
-                {/* Mobile Navigation List with Products Drawer */}
-                <nav className="flex flex-col space-y-1">
+              {/* Scrollable Navigation Body */}
+              <div className="flex-1 overflow-y-auto no-scrollbar py-3 space-y-4">
+                <nav className="flex flex-col space-y-1.5">
                   
                   {/* Expandable Products Item with Sub Nav Drawer */}
                   <div className="rounded-2xl border border-[#0B3B24]/10 bg-white/60 overflow-hidden">
@@ -324,7 +325,7 @@ export function LandingNavbar({ user = null }: { user?: any }) {
                       <button
                         type="button"
                         onClick={() => setMobileProductsExpanded(!mobileProductsExpanded)}
-                        className="p-1.5 rounded-lg hover:bg-stone-200/50 text-stone-600"
+                        className="p-1.5 rounded-lg hover:bg-stone-200/50 text-stone-600 cursor-pointer"
                         aria-label="Expand product list"
                       >
                         <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
@@ -418,7 +419,7 @@ export function LandingNavbar({ user = null }: { user?: any }) {
               </div>
 
               {/* Bottom Mobile Action Buttons */}
-              <div className="space-y-2.5 pt-5 border-t border-[#0B3B24]/10">
+              <div className="space-y-2.5 pt-3.5 border-t border-[#0B3B24]/10 shrink-0">
                 <Link href={user ? "/app/overview" : "/login"} onClick={() => setMobileMenuOpen(false)} className="block">
                   <Button className="w-full h-11 rounded-full bg-[#0B3B24] hover:bg-[#082b1a] text-white font-bold text-sm shadow-md shadow-[#0B3B24]/15 flex items-center justify-center gap-2 cursor-pointer">
                     <span>{user ? "Open Dashboard" : "Open an Account"}</span>
@@ -432,7 +433,7 @@ export function LandingNavbar({ user = null }: { user?: any }) {
                   </Button>
                 </Link>
 
-                <div className="pt-1.5 text-center">
+                <div className="pt-1 text-center">
                   <Link 
                     href="/login" 
                     onClick={() => setMobileMenuOpen(false)}
