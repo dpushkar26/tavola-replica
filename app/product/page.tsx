@@ -30,16 +30,27 @@ import {
   Boxes,
   Wallet,
   Dumbbell,
-  Milk
+  Milk,
+  Building2,
+  GraduationCap,
+  BarChart3,
+  Users,
+  MessageSquare,
+  Gift,
+  Puzzle,
+  FileSpreadsheet,
+  Layers,
+  Search,
+  Plus,
+  AlertTriangle,
+  X
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { LandingNavbar } from '@/components/landing/LandingNavbar';
 import { BrandLogo } from '@/components/landing/BrandLogo';
 
-type ProductModule = 'qr' | 'kds' | 'tables' | 'inventory' | 'billing';
-
 export default function ProductPage() {
-  const [activeModule, setActiveModule] = useState<ProductModule>('qr');
+  const [activeMarketplaceTab, setActiveMarketplaceTab] = useState<'crm' | 'analytics' | 'customer' | 'ops'>('crm');
 
   return (
     <div className="min-h-screen bg-[#FAF7EE] text-[#141414] selection:bg-[#BCE440]/40 selection:text-[#0B3B24] font-sans antialiased overflow-x-hidden">
@@ -47,515 +58,639 @@ export default function ProductPage() {
       {/* 1. SEAMLESS TOP NAVBAR */}
       <LandingNavbar />
 
-      {/* 2. PRODUCT HERO SECTION */}
-      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-16 lg:pb-20">
-        <div className="text-center max-w-3xl mx-auto space-y-5">
+      {/* 2. PRODUCT HERO SECTION (Matching Image 1 Editorial Style with Tavola Palette) */}
+      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16 pb-12 sm:pb-16">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           
-          {/* Breadcrumb / Category Tag */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8EFE9] border border-[#0B3B24]/15 text-[#0B3B24] text-xs font-bold tracking-tight shadow-2xs">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00ab14] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00ab14]"></span>
-            </span>
-            <span>THE COMPLETE TAVOLASERVE SUITE</span>
+          {/* Left Column: Headline & Value Proposition */}
+          <div className="lg:col-span-7 space-y-5 text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8EFE9] border border-[#0B3B24]/15 text-[#0B3B24] text-xs font-bold tracking-tight shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00ab14] animate-pulse"></span>
+              <span>TAVOLA ENTERPRISE RESTAURANT OS</span>
+            </div>
+
+            <h1 className="text-4xl xs:text-5xl sm:text-6xl font-black text-[#141414] tracking-tight leading-[1.06]">
+              Restaurant POS &amp; Operations <br className="hidden sm:inline" />
+              <span className="text-[#0B3B24]">software made simple!</span>
+            </h1>
+
+            <p className="text-[#555555] text-base sm:text-lg leading-relaxed max-w-xl">
+              Manages all your restaurant operations efficiently — from 3-click billing and automatic recipe inventory to kitchen display screens and live floor management.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+              <Link href="/demo">
+                <Button 
+                  size="lg" 
+                  className="w-full sm:w-auto h-12 px-7 text-sm sm:text-base bg-[#0B3B24] hover:bg-[#082b1a] text-white font-bold rounded-full shadow-md shadow-[#0B3B24]/15 transition-all duration-200 cursor-pointer"
+                >
+                  <span>Take a Free Demo</span>
+                  <ArrowRight className="w-4 h-4 ml-1.5 text-[#BCE440]" />
+                </Button>
+              </Link>
+              <Link href="/product/inventory">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="w-full sm:w-auto h-12 px-6 text-sm sm:text-base border border-[#0B3B24]/30 text-[#0B3B24] hover:bg-white rounded-full font-bold cursor-pointer transition-colors"
+                >
+                  <span>Explore Inventory Platform</span>
+                  <ChevronRight className="w-4 h-4 ml-1" />
+                </Button>
+              </Link>
+            </div>
           </div>
 
-          <h1 className="text-4xl xs:text-5xl sm:text-6xl font-black text-[#141414] tracking-tight leading-[1.04] uppercase">
-            Everything You Need to Run a Modern Restaurant
-          </h1>
+          {/* Right Column: Hero Visual Graphic / Illustration Frame */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="relative w-full max-w-[420px] aspect-square rounded-[36px] bg-gradient-to-br from-[#0B3B24] via-[#0E4A2E] to-[#062414] p-7 shadow-2xl flex flex-col justify-between overflow-hidden border border-emerald-600/30">
+              
+              {/* Subtle Ambient Rings */}
+              <div className="absolute -top-16 -right-16 w-52 h-52 rounded-full bg-[#BCE440]/15 blur-2xl pointer-events-none" />
+              <div className="absolute -bottom-16 -left-16 w-52 h-52 rounded-full bg-[#00ab14]/20 blur-2xl pointer-events-none" />
 
-          <p className="text-[#555555] text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-            From the moment guests scan the table QR code to kitchen station routing and zero-error UPI settlement, Tavola powers your entire dining operations with zero proprietary hardware lock-in.
+              <div className="flex items-center justify-between z-10">
+                <div className="flex items-center gap-2">
+                  <span className="font-serif italic font-extrabold text-xl text-white">Tavola</span>
+                  <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-white/15 text-[#BCE440] font-bold">
+                    SUITE v2.4
+                  </span>
+                </div>
+                <div className="w-2.5 h-2.5 rounded-full bg-[#00ab14] animate-ping" />
+              </div>
+
+              {/* Central Stack Preview Mockup */}
+              <div className="my-auto space-y-3 z-10 py-3">
+                <div className="bg-white/95 rounded-2xl p-4 shadow-xl border border-white/40 text-stone-900">
+                  <div className="flex items-center justify-between text-xs pb-2 border-b border-stone-100">
+                    <span className="font-bold text-[#0B3B24] flex items-center gap-1.5">
+                      <Store className="w-3.5 h-3.5 text-[#00ab14]" /> Table #07 • Dine-in
+                    </span>
+                    <span className="font-mono text-[11px] text-stone-500 font-bold">₹1,420.00</span>
+                  </div>
+                  <div className="mt-2.5 flex items-center justify-between text-xs text-stone-600">
+                    <span>Paneer Butter Masala (2x)</span>
+                    <span className="font-mono font-bold text-[#008726]">BOM Deducted</span>
+                  </div>
+                  <div className="mt-1 flex items-center justify-between text-xs text-stone-600">
+                    <span>Garlic Naan (4x)</span>
+                    <span className="text-[10px] px-1.5 py-0.2 rounded bg-amber-100 text-amber-800 font-bold">Kitchen KDS</span>
+                  </div>
+                </div>
+
+                <div className="bg-emerald-950/80 rounded-2xl p-3 border border-emerald-500/30 flex items-center justify-between text-white text-xs">
+                  <div className="flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-[#BCE440]" />
+                    <span className="font-bold">Instant UPI Settlement</span>
+                  </div>
+                  <span className="font-mono text-[#BCE440] font-bold">0.4s Fast</span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between text-[11px] text-emerald-200/90 z-10 pt-2 border-t border-white/10">
+                <span>Zero hardware lock-in</span>
+                <span className="text-white font-bold">100% Cloud Synced</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 3. SOCIAL PROOF / BRAND LOGOS TICKER (Matching Image 1) */}
+      <section className="py-8 sm:py-10 border-y border-[#E5DEC9] bg-white/70 backdrop-blur-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#0B3B24] font-mono mb-6">
+            TRUSTED BY 10,000+ RESTAURANTS, CAFES &amp; MULTI-CHAIN BRANDS
           </p>
 
-          {/* Quick CTA row */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3">
-            <Link href="/login" className="w-full sm:w-auto">
-              <Button 
-                size="lg" 
-                className="w-full sm:w-auto h-12 px-7 text-sm sm:text-base bg-[#0B3B24] hover:bg-[#082b1a] text-white font-bold rounded-full shadow-md shadow-[#0B3B24]/15 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
-              >
-                <span>Start 7-Day Free Trial</span>
-                <ArrowRight className="w-4 h-4 ml-1.5 text-[#BCE440]" />
-              </Button>
-            </Link>
-            <Link href="/demo" className="w-full sm:w-auto">
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="w-full sm:w-auto h-12 px-7 text-sm sm:text-base border border-[#141414] text-[#141414] hover:bg-[#0B3B24] hover:text-white hover:border-[#0B3B24] rounded-full transition-all duration-200 font-bold cursor-pointer"
-              >
-                <Play className="w-3.5 h-3.5 mr-2 fill-current" />
-                <span>Schedule Live Demo</span>
-              </Button>
-            </Link>
-          </div>
-
-        </div>
-
-        {/* 3. MODULE SELECTOR TABS */}
-        <div className="mt-14 max-w-4xl mx-auto">
-          <div className="p-1.5 rounded-2xl sm:rounded-full bg-[#EAE4D3] border border-[#DDD6C0] shadow-2xs flex flex-wrap justify-center gap-1">
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-6 sm:gap-8 items-center justify-items-center opacity-85">
             {[
-              { id: 'qr', label: 'Table QR Ordering' },
-              { id: 'kds', label: 'Kitchen KDS' },
-              { id: 'tables', label: 'Live Floor Plan' },
-              { id: 'inventory', label: 'Recipe Stock' },
-              { id: 'billing', label: 'Instant Billing' },
-            ].map((tab) => {
-              const isActive = activeModule === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveModule(tab.id as ProductModule)}
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
-                    isActive
-                      ? 'bg-[#0B3B24] text-white shadow-xs'
-                      : 'text-[#444444] hover:text-[#141414] hover:bg-black/5'
-                  }`}
-                >
-                  {tab.id === 'qr' && <QrCode className={`w-4 h-4 ${isActive ? 'text-[#BCE440]' : 'text-[#0B3B24]'}`} />}
-                  {tab.id === 'kds' && <ChefHat className={`w-4 h-4 ${isActive ? 'text-[#BCE440]' : 'text-[#0B3B24]'}`} />}
-                  {tab.id === 'tables' && <LayoutDashboard className={`w-4 h-4 ${isActive ? 'text-[#BCE440]' : 'text-[#0B3B24]'}`} />}
-                  {tab.id === 'inventory' && <Scale className={`w-4 h-4 ${isActive ? 'text-[#BCE440]' : 'text-[#0B3B24]'}`} />}
-                  {tab.id === 'billing' && <Receipt className={`w-4 h-4 ${isActive ? 'text-[#BCE440]' : 'text-[#0B3B24]'}`} />}
-                  <span>{tab.label}</span>
-                </button>
-              );
-            })}
+              { name: 'Moti Mahal', type: 'Fine Dining' },
+              { name: 'The Rustic Spatula', type: 'Gourmet Bistro' },
+              { name: 'Yum Yum Cha', type: 'Pan Asian' },
+              { name: 'Hocco Eatery', type: 'Quick Service' },
+              { name: 'La Pinoz', type: 'Pizza Chain' },
+              { name: 'Giani Ice Cream', type: 'Desserts & Bar' }
+            ].map((brand, i) => (
+              <div key={i} className="flex flex-col items-center">
+                <span className="font-serif italic font-bold text-base sm:text-lg text-stone-800 tracking-tight">
+                  {brand.name}
+                </span>
+                <span className="text-[10px] text-stone-400 font-mono">
+                  {brand.type}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
+      </section>
 
-        {/* 4. ACTIVE MODULE FEATURE SPOTLIGHT */}
-        <div className="mt-8 rounded-3xl bg-white border border-[#E5DEC9] p-7 sm:p-12 shadow-[0_12px_40px_rgba(0,0,0,0.04)]">
+      {/* =========================================================================
+          4. SMART OPERATIONS FEATURES — ALTERNATING SHOWCASE SECTIONS (Z-PATTERN)
+             (Matching Image 1 & Image 2 with Tavola Racing Green Palette)
+         ========================================================================= */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16 sm:space-y-24">
+        
+        {/* Section Heading */}
+        <div className="text-center max-w-3xl mx-auto">
+          <span className="text-xs font-bold text-[#008726] uppercase tracking-wider font-mono">
+            SMART RESTAURANT FEATURES
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#141414] tracking-tight mt-1">
+            A restaurant POS made for all your needs
+          </h2>
+          <p className="mt-2 text-sm sm:text-base text-stone-600 max-w-2xl mx-auto leading-relaxed">
+            Quick and easy-to-use restaurant software that makes managing high order volumes, ingredient stocks, and reports butter smooth.
+          </p>
+        </div>
+
+        {/* -----------------------------------------------------------------------
+            FEATURE 1: 3-Click Restaurant Billing Software
+           ----------------------------------------------------------------------- */}
+        <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 items-center">
           
-          {/* MODULE 1: QR CODE DINING */}
-          {activeModule === 'qr' && (
-            <div className="grid lg:grid-cols-12 gap-10 items-center animate-fade-in-up">
-              <div className="lg:col-span-6 space-y-6">
-                <span className="px-3 py-1 rounded-full bg-[#FAF7EE] border border-[#DDD6C0] text-[#0B3B24] text-xs font-bold inline-flex items-center gap-2">
-                  <QrCode className="w-3.5 h-3.5" /> Table QR Ordering &amp; Digital Menu
-                </span>
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-[#141414] tracking-tight">
-                  No App Downloads. Just Point, Order, and Relax.
-                </h2>
-                <p className="text-[#555555] leading-relaxed text-sm sm:text-base">
-                  Every table gets a unique vector QR code. Guests simply point their iPhone or Android camera to open your interactive menu in Safari or Chrome in under two seconds.
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3 text-sm text-[#333333]">
-                    <CheckCircle2 className="w-5 h-5 text-[#00ab14] shrink-0 mt-0.5" />
-                    <span><strong>Multi-Round Ordering:</strong> Diners can order extra drinks, rotis, or dessert anytime on their open continuous tab.</span>
-                  </div>
-                  <div className="flex items-start gap-3 text-sm text-[#333333]">
-                    <CheckCircle2 className="w-5 h-5 text-[#00ab14] shrink-0 mt-0.5" />
-                    <span><strong>Item Customizations &amp; Notes:</strong> Guests choose spice levels, less oil, or extra cheese with direct kitchen pass-through.</span>
-                  </div>
-                  <div className="flex items-start gap-3 text-sm text-[#333333]">
-                    <CheckCircle2 className="w-5 h-5 text-[#00ab14] shrink-0 mt-0.5" />
-                    <span><strong>Automatic FSSAI &amp; Allergen Tags:</strong> Clearly displays veg/non-veg green/red dots, calories, and allergen warnings.</span>
-                  </div>
+          {/* Left: Product UI Card Mockup */}
+          <div className="lg:col-span-6 order-2 lg:order-1">
+            <div className="rounded-3xl bg-[#0B3B24] p-5 sm:p-7 shadow-xl border border-emerald-700/50 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-[#BCE440]/10 rounded-full blur-2xl" />
+              
+              {/* POS Interface Card */}
+              <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-lg border border-stone-200">
+                
+                {/* Dine-in / Delivery / Take-away tabs */}
+                <div className="flex items-center gap-1.5 pb-3 border-b border-stone-200 text-xs">
+                  <span className="px-3 py-1 rounded-lg bg-[#0B3B24] text-white font-bold">Dine-in</span>
+                  <span className="px-3 py-1 rounded-lg bg-stone-100 text-stone-600 font-medium">Delivery</span>
+                  <span className="px-3 py-1 rounded-lg bg-stone-100 text-stone-600 font-medium">Take-away</span>
                 </div>
-                <div className="pt-2 flex items-center gap-4">
-                  <Link href="/demo">
-                    <Button className="bg-[#0B3B24] hover:bg-[#082b1a] text-white font-bold rounded-full px-6 py-2.5">
-                      Test Guest QR Experience <ArrowRight className="w-4 h-4 ml-1.5 text-[#BCE440]" />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
 
-              <div className="lg:col-span-6 flex justify-center">
-                <div className="w-full max-w-[360px] rounded-[32px] bg-white border border-[#E5DEC9] p-5 shadow-xl">
-                  <div className="flex items-center justify-between pb-3.5 border-b border-stone-200">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#00ab14]" />
-                      <span className="text-xs font-bold text-[#141414]">Table 07 • The Rustic Spatula</span>
+                <div className="grid grid-cols-12 gap-3 mt-3">
+                  
+                  {/* Item Buttons Grid */}
+                  <div className="col-span-7 grid grid-cols-2 gap-2 text-[11px]">
+                    <div className="p-2.5 rounded-xl bg-stone-50 border border-stone-200 font-bold text-stone-800">
+                      Choco Lava Cake
+                      <span className="block text-[10px] text-stone-500 font-normal mt-0.5">₹150.00</span>
                     </div>
-                    <span className="px-2.5 py-0.5 rounded-full bg-[#FAF7EE] text-[#0B3B24] border border-[#DDD6C0] text-[10px] font-bold">
-                      Round 2 Active
-                    </span>
-                  </div>
-
-                  <div className="mt-4 space-y-3">
-                    <div className="p-3.5 rounded-2xl bg-[#FAF8F5] border border-stone-200/80 flex items-center justify-between">
-                      <div>
-                        <div className="text-sm font-semibold text-[#141414]">Paneer Tikka Platter</div>
-                        <div className="text-xs text-stone-500">Mint chutney, onion salad</div>
-                        <div className="text-xs font-bold text-[#0B3B24] mt-1">₹340.00</div>
-                      </div>
-                      <span className="px-3 py-1 rounded-lg bg-[#FEF3C7] text-[#92400E] text-xs font-semibold">
-                        Kitchen Cooking
-                      </span>
+                    <div className="p-2.5 rounded-xl bg-stone-50 border border-stone-200 font-bold text-stone-800">
+                      American Pie Pastry
+                      <span className="block text-[10px] text-stone-500 font-normal mt-0.5">₹180.00</span>
                     </div>
-
-                    <div className="p-3.5 rounded-2xl bg-[#FAF8F5] border border-stone-200/80 flex items-center justify-between">
-                      <div>
-                        <div className="text-sm font-semibold text-[#141414]">Fresh Lime Soda</div>
-                        <div className="text-xs text-stone-500">Sweet &amp; Salt</div>
-                        <div className="text-xs font-bold text-[#0B3B24] mt-1">₹90.00</div>
-                      </div>
-                      <span className="px-3 py-1 rounded-lg bg-[#D1FAE5] text-[#065F46] text-xs font-semibold">
-                        Served
-                      </span>
+                    <div className="p-2.5 rounded-xl bg-stone-50 border border-stone-200 font-bold text-stone-800">
+                      Pastry Small
+                      <span className="block text-[10px] text-stone-500 font-normal mt-0.5">₹100.00</span>
                     </div>
-
-                    <div className="mt-4 p-4 rounded-2xl bg-[#FAF7EE] border border-[#DDD6C0]/80">
-                      <div className="flex justify-between text-xs text-stone-600">
-                        <span>Items Total (2 items)</span>
-                        <span className="font-mono font-bold">₹430.00</span>
-                      </div>
-                      <div className="flex justify-between text-xs text-stone-500 mt-1.5">
-                        <span>GST (5%)</span>
-                        <span className="font-mono">₹21.50</span>
-                      </div>
-                      <div className="flex justify-between text-sm font-bold text-[#141414] mt-2.5 pt-2.5 border-t border-stone-200">
-                        <span>Total Payable</span>
-                        <span className="text-[#0B3B24] font-black font-mono">₹451.50</span>
-                      </div>
-                      <button className="w-full mt-3.5 py-3 rounded-xl bg-[#00ab14] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm cursor-pointer">
-                        <QrCode className="w-3.5 h-3.5" /> Pay with Instant UPI QR
-                      </button>
+                    <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-300 font-bold text-[#0B3B24]">
+                      Banana Pastry (x2)
+                      <span className="block text-[10px] text-[#008726] font-bold mt-0.5">₹200.00</span>
                     </div>
                   </div>
+
+                  {/* Bill Receipt Preview */}
+                  <div className="col-span-5 bg-stone-50 rounded-xl p-3 border border-stone-200 text-xs flex flex-col justify-between">
+                    <div>
+                      <div className="flex justify-between font-bold text-stone-900 pb-1.5 border-b border-stone-200 text-[11px]">
+                        <span>Bill for Table 07</span>
+                        <span className="text-[#008726]">3 items</span>
+                      </div>
+                      <div className="space-y-1 mt-2 text-[10px] text-stone-600">
+                        <div className="flex justify-between">
+                          <span>1x Pastry Small</span>
+                          <span className="font-mono">₹100</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>2x Banana Pastry</span>
+                          <span className="font-mono">₹200</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>2x Choco Lava</span>
+                          <span className="font-mono">₹300</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-2 pt-2 border-t border-stone-200">
+                      <div className="flex justify-between font-bold text-stone-900 text-xs">
+                        <span>Total Payable:</span>
+                        <span className="font-mono text-[#008726]">₹650.00</span>
+                      </div>
+                      <div className="flex gap-1.5 mt-2">
+                        <button className="flex-1 py-1 rounded bg-[#0B3B24] text-white text-[10px] font-bold">
+                          Save &amp; Print
+                        </button>
+                        <button className="flex-1 py-1 rounded bg-[#008726] text-white text-[10px] font-bold">
+                          KOT &amp; Settle
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
+
               </div>
             </div>
-          )}
+          </div>
 
-          {/* MODULE 2: KITCHEN KDS */}
-          {activeModule === 'kds' && (
-            <div className="grid lg:grid-cols-12 gap-10 items-center animate-fade-in-up">
-              <div className="lg:col-span-6 space-y-6">
-                <span className="px-3 py-1 rounded-full bg-[#FAF7EE] border border-[#DDD6C0] text-[#0B3B24] text-xs font-bold inline-flex items-center gap-2">
-                  <Flame className="w-3.5 h-3.5 text-amber-600" /> Kitchen Display Screen (KDS)
-                </span>
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-[#141414] tracking-tight">
-                  Orders Pop Up on Kitchen Screens in Milliseconds.
-                </h2>
-                <p className="text-[#555555] leading-relaxed text-sm sm:text-base">
-                  Eliminate lost paper slips, missed tickets, and shouting across the dining room. Kitchen screens organize dishes by prep time and route items directly to individual cooking stations.
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3 text-sm text-[#333333]">
-                    <CheckCircle2 className="w-5 h-5 text-[#00ab14] shrink-0 mt-0.5" />
-                    <span><strong>Station Routing:</strong> Tandoor items go to Tandoor screen, mocktails to Bar, biryani to Main Kitchen.</span>
-                  </div>
-                  <div className="flex items-start gap-3 text-sm text-[#333333]">
-                    <CheckCircle2 className="w-5 h-5 text-[#00ab14] shrink-0 mt-0.5" />
-                    <span><strong>Color-Coded Timers:</strong> Tickets transition from Green (&lt;8 min) to Amber (12 min) to Red (15+ min) to prevent delays.</span>
-                  </div>
-                  <div className="flex items-start gap-3 text-sm text-[#333333]">
-                    <CheckCircle2 className="w-5 h-5 text-[#00ab14] shrink-0 mt-0.5" />
-                    <span><strong>One-Tap Ready Alerts:</strong> When cooks tap &apos;Ready&apos;, waiters get immediate push alerts to pick up dishes hot.</span>
-                  </div>
-                </div>
-                <div className="pt-2">
-                  <Link href="/demo">
-                    <Button className="bg-[#0B3B24] hover:bg-[#082b1a] text-white font-bold rounded-full px-6 py-2.5">
-                      Explore KDS Workflow <ArrowRight className="w-4 h-4 ml-1.5 text-[#BCE440]" />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
+          {/* Right: Feature Description */}
+          <div className="lg:col-span-6 space-y-4 order-1 lg:order-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#008726] font-mono">
+              POINT OF SALE SPEED
+            </span>
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#141414] tracking-tight leading-tight">
+              A quick 3-click restaurant <span className="text-[#008726]">billing software</span>
+            </h3>
+            <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
+              Take orders, punch bills and generate KOTs in under three clicks. Accept payments either by splitting bills or merging tables. Easily apply discounts, coupons, and GST compliance with zero hardware lock-in.
+            </p>
+            <div className="pt-2">
+              <Link 
+                href="/demo" 
+                className="inline-flex items-center gap-1.5 text-sm font-bold text-[#0B3B24] hover:text-[#008726] transition-colors"
+              >
+                <span>Explore all POS features</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
 
-              <div className="lg:col-span-6 grid sm:grid-cols-2 gap-4">
-                <div className="rounded-2xl bg-white border border-amber-300 p-4 shadow-sm relative overflow-hidden">
-                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-amber-500" />
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-bold text-[#141414]">#T-104 • Table 04</span>
-                    <span className="text-xs font-mono px-2 py-0.5 rounded bg-amber-50 text-amber-700 font-bold border border-amber-200 flex items-center gap-1">
-                      <Clock className="w-3 h-3" /> 07:42
-                    </span>
-                  </div>
-                  <div className="text-xs text-stone-500 mb-3">Dine-in • 4 Guests</div>
-                  <div className="space-y-2 text-sm border-t border-stone-200 pt-2">
-                    <div className="flex justify-between">
-                      <span className="text-[#141414] font-medium">2x Paneer Butter Masala</span>
-                      <span className="text-xs text-amber-600 font-bold font-mono">KITCHEN</span>
-                    </div>
-                    <div className="text-xs text-stone-500 italic pl-3 border-l-2 border-amber-300">
-                      &quot;Less spicy, extra gravy&quot;
-                    </div>
-                    <div className="flex justify-between text-stone-400">
-                      <span>4x Butter Naan</span>
-                      <span className="text-xs text-[#00ab14] font-bold font-mono">READY</span>
-                    </div>
-                  </div>
-                  <button className="w-full mt-4 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-800 font-bold text-xs border border-amber-200 transition-colors cursor-pointer">
-                    Mark Dishes Ready
-                  </button>
+        </div>
+
+        {/* -----------------------------------------------------------------------
+            FEATURE 2: Restaurant Inventory Management Made Easier (With Real /inventory UI!)
+           ----------------------------------------------------------------------- */}
+        <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 items-center">
+          
+          {/* Left: Feature Description */}
+          <div className="lg:col-span-6 space-y-4">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#008726] font-mono">
+              PERPETUAL INVENTORY &amp; RECIPE BOM
+            </span>
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#141414] tracking-tight leading-tight">
+              Restaurant <span className="text-[#008726]">Inventory management</span> made easier
+            </h3>
+            <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
+              Do inventory management the smart way. Put your ingredients on item-wise automatic recipe BOM deductions, get low-stock reorder alerts, and track daily opening-to-closing reconciliations with zero pilferage.
+            </p>
+            <div className="pt-2">
+              <Link 
+                href="/product/inventory" 
+                className="inline-flex items-center gap-1.5 text-sm font-bold text-[#0B3B24] hover:text-[#008726] transition-colors"
+              >
+                <span>Explore live Inventory Platform</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Right: Real Inventory Platform UI Card */}
+          <div className="lg:col-span-6">
+            <div className="rounded-3xl bg-[#FAF7EE] p-5 sm:p-7 shadow-xl border border-[#DDD6C0] relative overflow-hidden">
+              <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-md border border-stone-200">
+                
+                {/* Module action pills (from screenshot 2) */}
+                <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-3 border-b border-stone-200 text-[11px]">
+                  <span className="px-2.5 py-1 rounded-lg bg-[#008726] text-white font-bold whitespace-nowrap">+ Raw Materials</span>
+                  <span className="px-2.5 py-1 rounded-lg bg-stone-100 text-stone-600 font-medium whitespace-nowrap">+ Sales</span>
+                  <span className="px-2.5 py-1 rounded-lg bg-stone-100 text-stone-600 font-medium whitespace-nowrap">+ Wastage</span>
+                  <span className="px-2.5 py-1 rounded-lg bg-stone-100 text-stone-600 font-medium whitespace-nowrap">+ Purchase Order</span>
                 </div>
 
-                <div className="rounded-2xl bg-white border border-[#E5DEC9] p-4 shadow-sm relative overflow-hidden">
-                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#00ab14]" />
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-bold text-[#141414]">#T-105 • Table 12</span>
-                    <span className="text-xs font-mono px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold border border-emerald-200 flex items-center gap-1">
-                      <Clock className="w-3 h-3" /> 02:15
-                    </span>
-                  </div>
-                  <div className="text-xs text-stone-500 mb-3">Dine-in • 2 Guests</div>
-                  <div className="space-y-2 text-sm border-t border-stone-200 pt-2">
-                    <div className="flex justify-between">
-                      <span className="text-[#141414] font-medium">1x Veg Biryani (Handi)</span>
-                      <span className="text-xs text-[#00ab14] font-bold font-mono">KITCHEN</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#141414] font-medium">1x Boondi Raita</span>
-                      <span className="text-xs text-blue-600 font-bold font-mono">PANTRY</span>
-                    </div>
-                  </div>
-                  <button className="w-full mt-4 py-2 rounded-xl bg-[#FAF7EE] hover:bg-[#F2EDDE] text-[#0B3B24] font-bold text-xs border border-[#DDD6C0] transition-colors cursor-pointer">
-                    Mark In Preparation
-                  </button>
+                <div className="mt-3 flex items-center justify-between pb-2">
+                  <span className="font-bold text-xs text-stone-900">Inventory Management</span>
+                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-[#008726] border border-emerald-200">
+                    Auto-Closing Active
+                  </span>
                 </div>
+
+                {/* Stock Table Mockup with Real Items */}
+                <div className="border border-stone-200 rounded-xl overflow-hidden text-xs">
+                  <div className="bg-stone-50 px-3 py-2 text-[10px] font-mono text-stone-400 uppercase font-bold grid grid-cols-3">
+                    <span>RAW MATERIAL</span>
+                    <span>EXISTING</span>
+                    <span className="text-right">CURRENT STOCK</span>
+                  </div>
+                  <div className="divide-y divide-stone-100">
+                    <div className="px-3 py-2 grid grid-cols-3 items-center">
+                      <span className="font-bold text-stone-900">Milk (Kitchen Pantry)</span>
+                      <span className="text-stone-500 font-mono">8 packets</span>
+                      <span className="text-right font-bold text-[#008726] font-mono">8 packets (₹240)</span>
+                    </div>
+                    <div className="px-3 py-2 grid grid-cols-3 items-center">
+                      <span className="font-bold text-stone-900">Spinach (FreshVeg)</span>
+                      <span className="text-stone-500 font-mono">10 kg</span>
+                      <span className="text-right font-bold text-[#008726] font-mono">10 kg (₹1,200)</span>
+                    </div>
+                    <div className="px-3 py-2 grid grid-cols-3 items-center">
+                      <span className="font-bold text-stone-900">Water Bottle 1000ml</span>
+                      <span className="text-stone-500 font-mono">43 L</span>
+                      <span className="text-right font-bold text-[#008726] font-mono">43 L (₹860)</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating Item Audit Badge (from Image 2) */}
+                <div className="mt-3 p-3 rounded-xl bg-amber-50/80 border border-amber-200/80 flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-lg bg-amber-200/60 flex items-center justify-center text-base">
+                      🥔
+                    </div>
+                    <div>
+                      <span className="font-bold text-stone-900">Inventory | Potato</span>
+                      <div className="text-[10px] text-stone-500 flex items-center gap-2">
+                        <span>Opening: 30 kg</span>
+                        <span>•</span>
+                        <span>Closing: 12 kg</span>
+                      </div>
+                    </div>
+                  </div>
+                  <span className="font-mono font-bold text-amber-900 text-xs">
+                    Current: 12 kg
+                  </span>
+                </div>
+
               </div>
             </div>
-          )}
+          </div>
 
-          {/* MODULE 3: LIVE FLOOR PLAN */}
-          {activeModule === 'tables' && (
-            <div className="grid lg:grid-cols-12 gap-10 items-center animate-fade-in-up">
-              <div className="lg:col-span-6 space-y-6">
-                <span className="px-3 py-1 rounded-full bg-[#FAF7EE] border border-[#DDD6C0] text-[#0B3B24] text-xs font-bold inline-flex items-center gap-2">
-                  <LayoutDashboard className="w-3.5 h-3.5" /> Floor Plan &amp; Table Management
-                </span>
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-[#141414] tracking-tight">
-                  Visual Layout of Your Entire Restaurant in Real-Time.
-                </h2>
-                <p className="text-[#555555] leading-relaxed text-sm sm:text-base">
-                  Hosts and floor captains see exactly which tables are dining, which requested bills, and which are clean and ready to seat the next waiting party.
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3 text-sm text-[#333333]">
-                    <CheckCircle2 className="w-5 h-5 text-[#00ab14] shrink-0 mt-0.5" />
-                    <span><strong>1-Click Table Reassignment:</strong> Merge tables for large parties or move guests to the patio with active cart transfer.</span>
-                  </div>
-                  <div className="flex items-start gap-3 text-sm text-[#333333]">
-                    <CheckCircle2 className="w-5 h-5 text-[#00ab14] shrink-0 mt-0.5" />
-                    <span><strong>Waiter Service Chimes:</strong> When guests tap &apos;Call Waiter&apos; or &apos;Request Water&apos;, managers see it instantly.</span>
-                  </div>
-                  <div className="flex items-start gap-3 text-sm text-[#333333]">
-                    <CheckCircle2 className="w-5 h-5 text-[#00ab14] shrink-0 mt-0.5" />
-                    <span><strong>Table Turnover Optimization:</strong> Auto-freed status triggers the moment UPI payment succeeds.</span>
-                  </div>
-                </div>
-                <div className="pt-2">
-                  <Link href="/demo">
-                    <Button className="bg-[#0B3B24] hover:bg-[#082b1a] text-white font-bold rounded-full px-6 py-2.5">
-                      View Table Control <ArrowRight className="w-4 h-4 ml-1.5 text-[#BCE440]" />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
+        </div>
 
-              <div className="lg:col-span-6 grid grid-cols-2 sm:grid-cols-3 gap-3">
-                <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-emerald-200 text-center shadow-xs">
-                  <div className="text-xs text-emerald-800 font-bold mb-1">Table 01 • 4 Pax</div>
-                  <div className="text-lg font-black text-[#141414]">Dining</div>
-                  <div className="text-[11px] text-stone-500 mt-1">₹1,420 • 28 mins</div>
-                </div>
-                <div className="p-4 rounded-2xl bg-amber-50/80 border border-amber-200 text-center shadow-xs">
-                  <div className="text-xs text-amber-800 font-bold mb-1">Table 02 • 2 Pax</div>
-                  <div className="text-lg font-black text-[#141414] flex items-center justify-center gap-1">
-                    <span>Bill Asked</span>
-                    <Bell className="w-3.5 h-3.5 text-amber-600 inline" />
+        {/* -----------------------------------------------------------------------
+            FEATURE 3: Real-Time Restaurant Reports & Analytics (Matching Image 2)
+           ----------------------------------------------------------------------- */}
+        <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 items-center">
+          
+          {/* Left: Reports UI Mockup */}
+          <div className="lg:col-span-6 order-2 lg:order-1">
+            <div className="rounded-3xl bg-[#0B3B24] p-5 sm:p-7 shadow-xl border border-emerald-700/50 relative overflow-hidden">
+              <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-lg border border-stone-200 space-y-4">
+                
+                {/* Header */}
+                <div className="flex items-center justify-between pb-2 border-b border-stone-200">
+                  <div>
+                    <span className="font-bold text-xs text-stone-900">Time-slot Wise Sales Bifurcation</span>
+                    <p className="text-[10px] text-stone-400">Peak dining revenue analysis</p>
                   </div>
-                  <div className="text-[11px] text-stone-500 mt-1">₹890 • Awaiting UPI</div>
+                  <span className="px-2 py-0.5 rounded bg-emerald-50 text-[#008726] text-[10px] font-bold font-mono">
+                    Live Sync
+                  </span>
                 </div>
-                <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200 text-center shadow-xs">
-                  <div className="text-xs text-stone-500 font-bold mb-1">Table 03 • 6 Pax</div>
-                  <div className="text-lg font-black text-stone-700">Available</div>
-                  <div className="text-[11px] text-stone-400 mt-1">Clean &amp; Ready</div>
+
+                {/* Bar Chart Simulation */}
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-xs">
+                    <span className="w-16 text-[10.5px] text-stone-500">Breakfast</span>
+                    <div className="flex-1 bg-stone-100 h-3 rounded-full overflow-hidden">
+                      <div className="bg-stone-400 h-3 rounded-full" style={{ width: '28%' }} />
+                    </div>
+                    <span className="font-mono font-bold text-xs w-12 text-right">₹12.4k</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs">
+                    <span className="w-16 text-[10.5px] text-stone-500">Lunch</span>
+                    <div className="flex-1 bg-stone-100 h-3 rounded-full overflow-hidden">
+                      <div className="bg-[#008726] h-3 rounded-full" style={{ width: '74%' }} />
+                    </div>
+                    <span className="font-mono font-bold text-xs w-12 text-right">₹48.2k</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs">
+                    <span className="w-16 text-[10.5px] text-stone-500">Dinner</span>
+                    <div className="flex-1 bg-stone-100 h-3 rounded-full overflow-hidden">
+                      <div className="bg-[#0B3B24] h-3 rounded-full" style={{ width: '92%' }} />
+                    </div>
+                    <span className="font-mono font-bold text-xs w-12 text-right">₹76.8k</span>
+                  </div>
                 </div>
-                <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-emerald-200 text-center shadow-xs">
-                  <div className="text-xs text-emerald-800 font-bold mb-1">Table 04 • 2 Pax</div>
-                  <div className="text-lg font-black text-[#141414]">Dining</div>
-                  <div className="text-[11px] text-stone-500 mt-1">₹640 • 12 mins</div>
+
+                {/* Donut Distribution Card */}
+                <div className="p-3 rounded-xl bg-stone-50 border border-stone-200 flex items-center justify-between">
+                  <div>
+                    <span className="text-[10px] font-bold text-stone-400 uppercase font-mono">CHANNEL BREAKDOWN</span>
+                    <div className="text-base font-black text-stone-900 mt-0.5">Dine-in (76.6%)</div>
+                    <div className="text-[10.5px] text-stone-500">46,829 Total Orders Settled</div>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[10px] text-stone-600">
+                    <span className="w-2 h-2 rounded-full bg-[#0B3B24]" /> Dine-in
+                    <span className="w-2 h-2 rounded-full bg-[#008726] ml-1" /> Take Away
+                    <span className="w-2 h-2 rounded-full bg-[#BCE440] ml-1" /> Online
+                  </div>
                 </div>
-                <div className="p-4 rounded-2xl bg-blue-50/70 border border-blue-200 text-center shadow-xs">
-                  <div className="text-xs text-blue-800 font-bold mb-1">Table 05 • 8 Pax</div>
-                  <div className="text-lg font-black text-[#141414]">Reserved</div>
-                  <div className="text-[11px] text-stone-500 mt-1">Party • 9:00 PM</div>
-                </div>
-                <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-emerald-200 text-center shadow-xs">
-                  <div className="text-xs text-emerald-800 font-bold mb-1">Table 06 • 4 Pax</div>
-                  <div className="text-lg font-black text-[#141414]">Dining</div>
-                  <div className="text-[11px] text-stone-500 mt-1">₹2,100 • 45 mins</div>
-                </div>
+
               </div>
             </div>
-          )}
+          </div>
 
-          {/* MODULE 4: STOCK CONTROL */}
-          {activeModule === 'inventory' && (
-            <div className="grid lg:grid-cols-12 gap-10 items-center animate-fade-in-up">
-              <div className="lg:col-span-6 space-y-6">
-                <span className="px-3 py-1 rounded-full bg-[#FAF7EE] border border-[#DDD6C0] text-[#0B3B24] text-xs font-bold inline-flex items-center gap-2">
-                  <Scale className="w-3.5 h-3.5" /> Automatic Recipe Stock Deductions
-                </span>
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-[#141414] tracking-tight">
-                  Never Do Manual Inventory Audits at Midnight Again.
-                </h2>
-                <p className="text-[#555555] leading-relaxed text-sm sm:text-base">
-                  Link raw ingredients like paneer, chicken, sauces, and cooking oils to your menu items. Every time an order is confirmed, raw weights reduce automatically.
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3 text-sm text-[#333333]">
-                    <CheckCircle2 className="w-5 h-5 text-[#00ab14] shrink-0 mt-0.5" />
-                    <span><strong>Low-Stock Safeguards:</strong> Receive real-time alerts before key ingredients run out so your kitchen never stalls.</span>
-                  </div>
-                  <div className="flex items-start gap-3 text-sm text-[#333333]">
-                    <CheckCircle2 className="w-5 h-5 text-[#00ab14] shrink-0 mt-0.5" />
-                    <span><strong>Loss &amp; Wastage Audits:</strong> Compare expected ingredient usage vs physical closing stock to curb pilferage.</span>
-                  </div>
-                  <div className="flex items-start gap-3 text-sm text-[#333333]">
-                    <CheckCircle2 className="w-5 h-5 text-[#00ab14] shrink-0 mt-0.5" />
-                    <span><strong>Vendor Purchase Reorders:</strong> Auto-generate replenishment lists with a single tap.</span>
-                  </div>
-                </div>
-                <div className="pt-2">
-                  <Link href="/demo">
-                    <Button className="bg-[#0B3B24] hover:bg-[#082b1a] text-white font-bold rounded-full px-6 py-2.5">
-                      Explore Stock Control <ArrowRight className="w-4 h-4 ml-1.5 text-[#BCE440]" />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-
-              <div className="lg:col-span-6 space-y-3">
-                <div className="p-4 rounded-2xl bg-white border border-[#E5DEC9] shadow-xs">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-bold text-[#141414]">Fresh Paneer (Dairy)</span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 text-xs font-bold">Low Stock • Order Soon</span>
-                  </div>
-                  <div className="w-full bg-[#FAF7EE] rounded-full h-2.5 overflow-hidden">
-                    <div className="bg-amber-500 h-2.5 rounded-full" style={{ width: '22%' }} />
-                  </div>
-                  <div className="flex justify-between text-xs text-stone-500 mt-2">
-                    <span>Available: 1.8 kg</span>
-                    <span>Safety Warning: 2.0 kg</span>
-                  </div>
-                </div>
-
-                <div className="p-4 rounded-2xl bg-white border border-[#E5DEC9] shadow-xs">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-bold text-[#141414]">Chicken Portions (Fresh Cut)</span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-[#0B3B24] border border-emerald-200 text-xs font-bold">Healthy Stock</span>
-                  </div>
-                  <div className="w-full bg-[#FAF7EE] rounded-full h-2.5 overflow-hidden">
-                    <div className="bg-[#00ab14] h-2.5 rounded-full" style={{ width: '78%' }} />
-                  </div>
-                  <div className="flex justify-between text-xs text-stone-500 mt-2">
-                    <span>Available: 28 plates</span>
-                    <span>Safety Warning: 6 plates</span>
-                  </div>
-                </div>
-
-                <div className="p-4 rounded-2xl bg-white border border-[#E5DEC9] shadow-xs">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-bold text-[#141414]">Cold Drinks &amp; Bottled Soda</span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-[#0B3B24] border border-emerald-200 text-xs font-bold">Healthy Stock</span>
-                  </div>
-                  <div className="w-full bg-[#FAF7EE] rounded-full h-2.5 overflow-hidden">
-                    <div className="bg-[#00ab14] h-2.5 rounded-full" style={{ width: '85%' }} />
-                  </div>
-                  <div className="flex justify-between text-xs text-stone-500 mt-2">
-                    <span>Available: 56 bottles</span>
-                    <span>Safety Warning: 12 bottles</span>
-                  </div>
-                </div>
-              </div>
+          {/* Right: Feature Description */}
+          <div className="lg:col-span-6 space-y-4 order-1 lg:order-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#008726] font-mono">
+              FINANCIAL INTELLIGENCE
+            </span>
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#141414] tracking-tight leading-tight">
+              Get real-time restaurant <span className="text-[#008726]">Reports &amp; P&amp;L</span>
+            </h3>
+            <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
+              Automate your restaurant reports and go completely paper-free! Tavola automatically tracks daily day-end sales, online orders, staff actions, and stock consumption across 80+ essential business reports.
+            </p>
+            <div className="pt-2">
+              <Link 
+                href="/demo" 
+                className="inline-flex items-center gap-1.5 text-sm font-bold text-[#0B3B24] hover:text-[#008726] transition-colors"
+              >
+                <span>Explore live reporting suite</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
-          )}
-
-          {/* MODULE 5: BILLING & POS */}
-          {activeModule === 'billing' && (
-            <div className="grid lg:grid-cols-12 gap-10 items-center animate-fade-in-up">
-              <div className="lg:col-span-6 space-y-6">
-                <span className="px-3 py-1 rounded-full bg-[#FAF7EE] border border-[#DDD6C0] text-[#0B3B24] text-xs font-bold inline-flex items-center gap-2">
-                  <Receipt className="w-3.5 h-3.5" /> Instant Dynamic UPI &amp; Fast POS
-                </span>
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-[#141414] tracking-tight">
-                  Dynamic UPI QR Codes with 100% Exact Bill Amounts.
-                </h2>
-                <p className="text-[#555555] leading-relaxed text-sm sm:text-base">
-                  No manual entering of rupee amounts on cardboard QRs. Tavola encodes the precise bill amount with GST directly into the QR code, marking the table paid automatically.
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3 text-sm text-[#333333]">
-                    <CheckCircle2 className="w-5 h-5 text-[#00ab14] shrink-0 mt-0.5" />
-                    <span><strong>Zero Verification Hassles:</strong> No need for cashiers to peek at customer payment screens. Status syncs in 0.4 seconds.</span>
-                  </div>
-                  <div className="flex items-start gap-3 text-sm text-[#333333]">
-                    <CheckCircle2 className="w-5 h-5 text-[#00ab14] shrink-0 mt-0.5" />
-                    <span><strong>Split Bills &amp; Custom Discounts:</strong> Split equally or by item among dining guests with instant thermal print.</span>
-                  </div>
-                  <div className="flex items-start gap-3 text-sm text-[#333333]">
-                    <CheckCircle2 className="w-5 h-5 text-[#00ab14] shrink-0 mt-0.5" />
-                    <span><strong>Standard Thermal Printers:</strong> Works out of the box with any 80mm or 58mm USB/Bluetooth printer.</span>
-                  </div>
-                </div>
-                <div className="pt-2">
-                  <Link href="/demo">
-                    <Button className="bg-[#0B3B24] hover:bg-[#082b1a] text-white font-bold rounded-full px-6 py-2.5">
-                      Test Billing Workflow <ArrowRight className="w-4 h-4 ml-1.5 text-[#BCE440]" />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-
-              <div className="lg:col-span-6 flex justify-center">
-                <div className="w-full max-w-[340px] rounded-3xl bg-gradient-to-br from-[#0B3B24] via-[#0E4A2E] to-[#062414] text-white p-6 shadow-2xl border border-emerald-700/50 space-y-5">
-                  <div className="flex justify-between items-center border-b border-emerald-800/80 pb-3">
-                    <span className="font-serif italic text-lg font-bold">TavolaServe POS</span>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#BCE440]/20 text-[#BCE440] font-bold">
-                      PAID AUTO-VERIFIED
-                    </span>
-                  </div>
-                  <div className="space-y-1">
-                    <div className="text-xs text-emerald-200 uppercase font-semibold">Table #04 Settled</div>
-                    <div className="text-4xl font-black font-mono">₹1,420.00</div>
-                    <div className="text-xs text-emerald-300/80">GooglePay UPI • Ref: #TXN-90241</div>
-                  </div>
-                  <div className="p-3 rounded-2xl bg-white/10 text-xs space-y-1.5 text-emerald-100">
-                    <div className="flex justify-between">
-                      <span>Subtotal (4 items)</span>
-                      <span className="font-mono">₹1,352.38</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>GST (5%)</span>
-                      <span className="font-mono">₹67.62</span>
-                    </div>
-                    <div className="flex justify-between font-bold text-white pt-1 border-t border-white/20">
-                      <span>Final Settled</span>
-                      <span className="font-mono">₹1,420.00</span>
-                    </div>
-                  </div>
-                  <div className="text-center text-[11px] text-emerald-300">
-                    Table freed in 0.4s • Next party ready to seat
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+          </div>
 
         </div>
 
       </section>
 
-      {/* 4.5 SPECIALIZED INDUSTRY PRODUCTS */}
-      <section className="relative z-10 py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8EFE9] border border-[#0B3B24]/15 text-[#0B3B24] text-xs font-bold tracking-tight mb-3">
-            <span>EXPANDED BUSINESS LINEUP</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#141414] tracking-tight uppercase">
-            Specialized Products by Tavola
+      {/* =========================================================================
+          5. APP MARKETPLACE / ADD-ONS MATRIX (Matching Image 3)
+         ========================================================================= */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#E5DEC9]">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <span className="text-xs font-bold text-[#008726] uppercase tracking-wider font-mono">
+            APP MARKETPLACE
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#141414] tracking-tight mt-1">
+            Add-ons to supercharge your Operations
           </h2>
-          <p className="mt-2 text-[#555555] text-sm sm:text-base">
-            Engineered with the same real-time sync, zero proprietary hardware, and instant settlement principles across high-turnover business models.
+          <p className="mt-2 text-sm sm:text-base text-stone-600">
+            Extend your restaurant capabilities with integrated CRM, guest loyalty, feedback management, and automated SMS marketing.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
+          
+          {/* Left: Vertical Tab Menu (from Image 3) */}
+          <div className="lg:col-span-4 space-y-2">
+            {[
+              { 
+                id: 'crm', 
+                title: 'CRM & Guest Profiles', 
+                desc: 'Bill payment is not the end of the service. Build smart CRM profiles to know your customer order history and win repeat visits.' 
+              },
+              { 
+                id: 'analytics', 
+                title: 'Deep Business Analytics', 
+                desc: 'Uncover top revenue-generating menu items, table turn speeds, and server performance metrics.' 
+              },
+              { 
+                id: 'customer', 
+                title: 'Feedback Management', 
+                desc: 'Instant digital table reviews with automated manager alerts for any negative ratings before guests leave.' 
+              },
+              { 
+                id: 'ops', 
+                title: 'Operations & Multi-Chain', 
+                desc: 'Centralized menu publishing, raw stock transfers between outlets, and unified corporate reporting.' 
+              },
+            ].map((tab) => {
+              const isActive = activeMarketplaceTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveMarketplaceTab(tab.id as any)}
+                  className={`w-full text-left p-4 rounded-2xl transition-all cursor-pointer border ${
+                    isActive
+                      ? 'bg-white border-[#0B3B24] shadow-md shadow-[#0B3B24]/5 pl-5 border-l-4'
+                      : 'bg-[#FAF7EE] border-transparent hover:bg-white/60 text-stone-600'
+                  }`}
+                >
+                  <h4 className={`text-sm font-bold ${isActive ? 'text-[#0B3B24]' : 'text-stone-800'}`}>
+                    {tab.title}
+                  </h4>
+                  {isActive && (
+                    <p className="text-xs text-stone-500 mt-1.5 leading-relaxed">
+                      {tab.desc}
+                    </p>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right: 2x2 Feature Cards Grid (from Image 3) */}
+          <div className="lg:col-span-8 grid sm:grid-cols-2 gap-4">
+            
+            {/* Card 1: Dynamic Digital Menu */}
+            <div className="p-5 rounded-2xl bg-white border border-[#E5DEC9] shadow-2xs space-y-3">
+              <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#008726] flex items-center justify-center font-bold">
+                <QrCode className="w-4 h-4" />
+              </div>
+              <h4 className="font-extrabold text-stone-900 text-sm">Build Dynamic Web Menus</h4>
+              <p className="text-xs text-stone-500 leading-relaxed">
+                Publish live dish photos, real-time 86 out-of-stock toggles, and multi-lingual menus in Safari and Chrome.
+              </p>
+            </div>
+
+            {/* Card 2: Engage with SMS & WhatsApp */}
+            <div className="p-5 rounded-2xl bg-white border border-[#E5DEC9] shadow-2xs space-y-3">
+              <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
+                <MessageSquare className="w-4 h-4" />
+              </div>
+              <h4 className="font-extrabold text-stone-900 text-sm">Engage with WhatsApp &amp; SMS</h4>
+              <p className="text-xs text-stone-500 leading-relaxed">
+                Send paperless digital e-bills, birthday discounts, and personalized re-engagement offers automatically.
+              </p>
+            </div>
+
+            {/* Card 3: Feedback Management */}
+            <div className="p-5 rounded-2xl bg-white border border-[#E5DEC9] shadow-2xs space-y-3">
+              <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
+                <Bell className="w-4 h-4" />
+              </div>
+              <h4 className="font-extrabold text-stone-900 text-sm">Digital Feedback Management</h4>
+              <p className="text-xs text-stone-500 leading-relaxed">
+                Guests rate food, ambiance, and service directly on their phone screen. Escalates low scores immediately to managers.
+              </p>
+            </div>
+
+            {/* Card 4: Loyalty Wallet */}
+            <div className="p-5 rounded-2xl bg-white border border-[#E5DEC9] shadow-2xs space-y-3">
+              <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold">
+                <Gift className="w-4 h-4" />
+              </div>
+              <h4 className="font-extrabold text-stone-900 text-sm">Cashback Loyalty Wallet</h4>
+              <p className="text-xs text-stone-500 leading-relaxed">
+                Reward repeat diners with automated wallet credits on every bill settlement. Redeemable on next dine-in visit.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* =========================================================================
+          6. INTEGRATIONS ECOSYSTEM HUB (Matching Image 3 Bottom Section)
+         ========================================================================= */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#E5DEC9]">
+        <div className="grid lg:grid-cols-12 gap-8 items-center mb-10 sm:mb-12">
+          <div className="lg:col-span-8 space-y-2">
+            <span className="text-xs font-bold text-[#008726] uppercase tracking-wider font-mono">
+              UNIFIED INTEGRATIONS
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-[#141414] tracking-tight">
+              Multiple integrations — single dashboard
+            </h2>
+            <p className="text-sm sm:text-base text-stone-600 leading-relaxed max-w-2xl">
+              Manage 150+ third-party integrations, online food delivery aggregators, accounting packages, and payment gateways directly from Tavola.
+            </p>
+          </div>
+
+          <div className="lg:col-span-4 lg:text-right">
+            <Link href="/demo">
+              <Button className="bg-[#0B3B24] hover:bg-[#082b1a] text-white font-bold rounded-full px-6 py-2.5">
+                <span>See all Integrations</span>
+                <ArrowRight className="w-4 h-4 ml-1.5 text-[#BCE440]" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+
+        {/* Integration Category Badges & Partner Tiles */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+          {[
+            { name: 'Zomato', category: 'Online Order' },
+            { name: 'Swiggy', category: 'Online Order' },
+            { name: 'WhatsApp', category: 'Marketing' },
+            { name: 'Tally Prime', category: 'Accounting' },
+            { name: 'SAP Business', category: 'ERP System' },
+            { name: 'Paytm UPI', category: 'Payments' },
+            { name: 'PhonePe', category: 'Payments' },
+            { name: 'Razorpay', category: 'Gateway' },
+          ].map((partner, i) => (
+            <div 
+              key={i} 
+              className="p-3.5 rounded-2xl bg-white border border-[#E5DEC9] shadow-2xs text-center flex flex-col justify-between hover:border-[#0B3B24]/40 transition-colors"
+            >
+              <div className="w-8 h-8 rounded-xl bg-stone-100 flex items-center justify-center font-bold text-stone-700 text-xs mx-auto mb-2">
+                {partner.name[0]}
+              </div>
+              <div>
+                <h4 className="font-extrabold text-stone-900 text-xs truncate">{partner.name}</h4>
+                <p className="text-[10px] text-stone-400 font-mono mt-0.5">{partner.category}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* =========================================================================
+          7. SPECIALIZED BUSINESS LINEUP (Hotel, Gym, Dairy, School)
+         ========================================================================= */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#E5DEC9]">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <span className="text-xs font-bold text-[#008726] uppercase tracking-wider font-mono">
+            EXPANDED INDUSTRY PRODUCTS
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-black text-[#141414] tracking-tight mt-1">
+            Specialized Management Engines
+          </h2>
+          <p className="mt-2 text-stone-600 text-sm sm:text-base">
+            Engineered with the same real-time sync, zero proprietary hardware, and instant settlement architecture across high-turnover industries.
           </p>
         </div>
 
@@ -564,20 +699,32 @@ export default function ProductPage() {
             {
               id: 'inventory',
               title: 'Inventory Management',
-              tag: 'Stock & Wastage',
-              desc: 'Ingredient-level recipe deduction, automatic low-stock warnings & 1-tap supplier purchase orders.',
+              tag: 'Stock & Recipe BOM',
+              desc: 'Sub-gram recipe formulas, real-time FIFO stock depletion & automated low-stock vendor purchase orders.',
               href: '/product/inventory',
               badge: 'Popular',
               badgeColor: 'bg-emerald-100 text-[#0B3B24] border-emerald-200',
+              icon: Boxes
             },
             {
               id: 'expenses',
               title: 'Expenses Tracker',
-              tag: 'Cash & P&L',
-              desc: 'Daily cash outflows, supplier bill reconciliation, petty cash receipts & verified profit margins.',
+              tag: 'Cash & Vendor Ledger',
+              desc: 'Daily cash outflows, supplier bill reconciliation, petty cash slips & live net profit margins.',
               href: '/product/expenses',
               badge: 'Finance',
               badgeColor: 'bg-amber-100 text-amber-900 border-amber-200',
+              icon: Wallet
+            },
+            {
+              id: 'hotel',
+              title: 'Multi-Chain Hotel Hub',
+              tag: 'Hospitality & Rooms',
+              desc: 'Multi-property reservations, room inventory, housekeeping status & banquet hall billing.',
+              href: '/product/hotel',
+              badge: 'Enterprise',
+              badgeColor: 'bg-purple-100 text-purple-900 border-purple-200',
+              icon: Building2
             },
             {
               id: 'gym',
@@ -587,17 +734,10 @@ export default function ProductPage() {
               href: '/product/gym',
               badge: 'New',
               badgeColor: 'bg-blue-100 text-blue-900 border-blue-200',
-            },
-            {
-              id: 'dairy',
-              title: 'Dairy Management',
-              tag: 'Milk Procurement',
-              desc: 'Morning/evening milk intake, electronic Fat/SNF testing formulas, farmer ledgers & route dispatch.',
-              href: '/product/dairy',
-              badge: 'Specialized',
-              badgeColor: 'bg-teal-100 text-teal-900 border-teal-200',
+              icon: Dumbbell
             },
           ].map((item) => {
+            const Icon = item.icon;
             return (
               <Link 
                 key={item.id}
@@ -607,16 +747,13 @@ export default function ProductPage() {
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <div className="w-11 h-11 rounded-2xl bg-[#FAF7EE] border border-[#DDD6C0] flex items-center justify-center text-[#0B3B24] group-hover:bg-[#0B3B24] group-hover:text-[#BCE440] transition-colors">
-                      {item.id === 'inventory' && <Boxes className="w-5 h-5" />}
-                      {item.id === 'expenses' && <Wallet className="w-5 h-5" />}
-                      {item.id === 'gym' && <Dumbbell className="w-5 h-5" />}
-                      {item.id === 'dairy' && <Milk className="w-5 h-5" />}
+                      <Icon className="w-5 h-5" />
                     </div>
                     <span className={`text-[10px] font-bold px-2 py-0.5 rounded border uppercase ${item.badgeColor}`}>
                       {item.badge}
                     </span>
                   </div>
-                  <div className="text-[11px] font-semibold text-[#0B3B24] uppercase tracking-wider mb-1">
+                  <div className="text-[11px] font-semibold text-[#008726] uppercase tracking-wider mb-1">
                     {item.tag}
                   </div>
                   <h3 className="font-extrabold text-lg text-[#141414] group-hover:text-[#0B3B24] transition-colors">
@@ -637,12 +774,12 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* 5. HARDWARE AGNOSTIC VALUE PROP */}
-      <section className="relative z-10 py-16 bg-[#F5F0E1] border-y border-[#E5DEC9]">
+      {/* 8. HARDWARE AGNOSTIC VALUE PROP */}
+      <section className="py-16 bg-[#F5F0E1] border-y border-[#E5DEC9]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-xs uppercase font-extrabold tracking-widest text-[#0B3B24] mb-2">
-              Zero Proprietary Hardware Lock-In
+            <h2 className="text-xs uppercase font-extrabold tracking-widest text-[#0B3B24] mb-2 font-mono">
+              ZERO PROPRIETARY HARDWARE LOCK-IN
             </h2>
             <p className="text-3xl sm:text-4xl font-black text-[#141414] tracking-tight">
               Runs on the Screens You Already Own
@@ -687,7 +824,7 @@ export default function ProductPage() {
               <div className="w-12 h-12 rounded-2xl bg-[#FAF7EE] text-[#0B3B24] flex items-center justify-center mx-auto border border-[#DDD6C0]">
                 <Printer className="w-6 h-6" />
               </div>
-              <h3 className="font-bold text-base text-[#141414]">Standard Thermal Printers</h3>
+              <h3 className="font-bold text-base text-[#141414]">Thermal Printers</h3>
               <p className="text-xs text-[#555555]">
                 Compatible with any 80mm or 58mm ESC/POS thermal printer via USB, Bluetooth, or WiFi.
               </p>
@@ -696,8 +833,8 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* 6. BOTTOM CALL TO ACTION */}
-      <section className="relative z-10 py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      {/* 9. BOTTOM CALL TO ACTION */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="rounded-[32px] bg-[#0B3B24] p-10 sm:p-16 text-center text-white shadow-2xl relative overflow-hidden">
           <div className="relative z-10 max-w-3xl mx-auto space-y-6">
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
@@ -710,7 +847,7 @@ export default function ProductPage() {
               <Link href="/login" className="w-full sm:w-auto">
                 <Button 
                   size="lg" 
-                  className="w-full sm:w-auto h-13 px-8 text-base bg-[#BCE440] hover:bg-[#b0d938] text-[#0B3B24] font-bold rounded-full shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02] active:translate-y-0 active:scale-[0.98] cursor-pointer"
+                  className="w-full sm:w-auto h-13 px-8 text-base bg-[#BCE440] hover:bg-[#b0d938] text-[#0B3B24] font-bold rounded-full shadow-lg transition-all duration-200 cursor-pointer"
                 >
                   <Store className="w-4 h-4 mr-2" />
                   Get Started Free
@@ -731,10 +868,9 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* 7. CLEAN FOOTER */}
-      <footer className="relative z-10 border-t border-[#E5DEC9] bg-[#FAF7EE] py-14 px-4 sm:px-6 lg:px-8">
+      {/* 10. CLEAN FOOTER */}
+      <footer className="border-t border-[#E5DEC9] bg-[#FAF7EE] py-14 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-          
           <div className="col-span-2 md:col-span-1 space-y-4">
             <div className="flex items-center gap-2">
               <BrandLogo size="md" />
@@ -748,57 +884,31 @@ export default function ProductPage() {
           </div>
 
           <div>
-            <h4 className="text-xs uppercase font-extrabold text-[#141414] tracking-wider mb-4">Features</h4>
-            <ul className="space-y-2.5 text-xs text-stone-600">
-              <li><Link href="/product#qr" className="hover:text-[#0B3B24] transition-colors">QR Ordering</Link></li>
-              <li><Link href="/product#kds" className="hover:text-[#0B3B24] transition-colors">Kitchen Display Screen</Link></li>
-              <li><Link href="/product#tables" className="hover:text-[#0B3B24] transition-colors">Floor Plan &amp; Tables</Link></li>
-              <li><Link href="/product#inventory" className="hover:text-[#0B3B24] transition-colors">Inventory &amp; Stock</Link></li>
-              <li><Link href="/#calculator" className="hover:text-[#0B3B24] transition-colors">Savings Calculator</Link></li>
-            </ul>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-stone-900 mb-3 font-mono">Products</h4>
+            <div className="space-y-2 text-xs text-stone-600">
+              <div><Link href="/product/inventory" className="hover:text-[#0B3B24]">Inventory Management</Link></div>
+              <div><Link href="/product/expenses" className="hover:text-[#0B3B24]">Expenses Tracker</Link></div>
+              <div><Link href="/product/hotel" className="hover:text-[#0B3B24]">Hotel Management</Link></div>
+              <div><Link href="/product/gym" className="hover:text-[#0B3B24]">Gym Management</Link></div>
+            </div>
           </div>
 
           <div>
-            <h4 className="text-xs uppercase font-extrabold text-[#141414] tracking-wider mb-4">Contact &amp; Advisory</h4>
-            <ul className="space-y-2.5 text-xs text-stone-600">
-              <li>
-                <Link href="/demo" className="hover:text-[#0B3B24] transition-colors flex items-center gap-1">
-                  Request a Private Demo
-                </Link>
-              </li>
-              <li>
-                <Link href="/demo#contact" className="hover:text-[#0B3B24] transition-colors">
-                  Contact Sales &amp; Onboarding
-                </Link>
-              </li>
-              <li>
-                <Link href="/#faq" className="hover:text-[#0B3B24] transition-colors">
-                  Platform Architecture &amp; FAQ
-                </Link>
-              </li>
-            </ul>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-stone-900 mb-3 font-mono">Platform</h4>
+            <div className="space-y-2 text-xs text-stone-600">
+              <div><Link href="/demo" className="hover:text-[#0B3B24]">Live Demo</Link></div>
+              <div><Link href="/#calculator" className="hover:text-[#0B3B24]">Savings Calculator</Link></div>
+              <div><Link href="/#faq" className="hover:text-[#0B3B24]">FAQ</Link></div>
+              <div><Link href="/login" className="hover:text-[#0B3B24]">Sign In</Link></div>
+            </div>
           </div>
 
           <div>
-            <h4 className="text-xs uppercase font-extrabold text-[#141414] tracking-wider mb-4">Platform</h4>
-            <ul className="space-y-2.5 text-xs text-stone-600">
-              <li className="text-stone-600">Private Restaurant Data</li>
-              <li className="text-stone-600">Instant Kitchen Routing</li>
-              <li className="text-stone-600">Dynamic UPI Payments</li>
-              <li className="text-stone-600">Thermal Printer Support</li>
-            </ul>
-          </div>
-
-        </div>
-
-        <div className="max-w-7xl mx-auto pt-8 border-t border-stone-300/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-600">
-          <div>
-            &copy; {new Date().getFullYear()} Tavola Restaurant Operations Platform. All rights reserved.
-          </div>
-          <div className="flex items-center gap-6">
-            <span className="text-stone-600">Enterprise Restaurant OS</span>
-            <span className="text-stone-400">•</span>
-            <span className="text-stone-600">High-Availability Cloud Architecture</span>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-stone-900 mb-3 font-mono">Company</h4>
+            <div className="space-y-2 text-xs text-stone-600">
+              <div>© {new Date().getFullYear()} Tavola Technologies</div>
+              <div className="text-stone-400">Made for modern food &amp; hospitality teams</div>
+            </div>
           </div>
         </div>
       </footer>

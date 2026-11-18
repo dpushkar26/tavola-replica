@@ -468,6 +468,212 @@ export default function InventoryProductPage() {
       </section>
 
       {/* =========================================================================
+          5.5 ALTERNATING FEATURE DEMONSTRATION SECTIONS (Matching Petpooja-Style Layout)
+             - Feature 1: Sub-Gram Recipe BOM Auto-Deductions
+             - Feature 2: Supplier Price Fluctuation & Vendor Radar
+             - Feature 3: Day-End Opening-to-Closing Audit Reconciliation
+         ========================================================================= */}
+      <section className="py-12 sm:py-16 px-3.5 xs:px-4 sm:px-6 lg:px-12 max-w-[1480px] mx-auto space-y-16 sm:space-y-20 border-t border-stone-200/80">
+        
+        {/* Section Heading */}
+        <div className="text-center max-w-3xl mx-auto">
+          <span className="text-xs font-bold text-[#008726] uppercase tracking-wider font-mono">
+            INVENTORY INTELLIGENCE
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-black text-[#141414] tracking-tight mt-1">
+            Engineered for high-volume commercial kitchens
+          </h2>
+          <p className="mt-2 text-xs sm:text-sm text-stone-600 max-w-2xl mx-auto">
+            From raw ingredient intake to dish portion deductions and supplier bill creep detection, Tavola provides end-to-end stock control.
+          </p>
+        </div>
+
+        {/* Feature 1: Sub-Gram BOM Auto-Deductions */}
+        <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 items-center">
+          {/* Left: UI Card Mockup */}
+          <div className="lg:col-span-6 order-2 lg:order-1">
+            <div className="rounded-3xl bg-[#0B3B24] p-5 sm:p-7 shadow-xl border border-emerald-700/50 relative overflow-hidden">
+              <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-md border border-stone-200 space-y-3">
+                <div className="flex items-center justify-between pb-2 border-b border-stone-200">
+                  <span className="font-bold text-xs text-stone-900 flex items-center gap-1.5">
+                    <UtensilsCrossed className="w-3.5 h-3.5 text-[#008726]" /> Active BOM Formula: Chocolate Cone
+                  </span>
+                  <span className="px-2 py-0.5 rounded bg-emerald-50 text-[#008726] text-[10px] font-bold">
+                    100% Efficiency
+                  </span>
+                </div>
+
+                <div className="space-y-1.5 text-xs">
+                  <div className="flex justify-between items-center p-2 rounded-xl bg-stone-50 border border-stone-100">
+                    <span className="font-semibold text-stone-800">Milk (Whole Dairy)</span>
+                    <span className="font-mono text-stone-600">60 ml / serving</span>
+                  </div>
+                  <div className="flex justify-between items-center p-2 rounded-xl bg-stone-50 border border-stone-100">
+                    <span className="font-semibold text-stone-800">Cocoa Waffle Shell</span>
+                    <span className="font-mono text-stone-600">1 unit / serving</span>
+                  </div>
+                  <div className="flex justify-between items-center p-2 rounded-xl bg-stone-50 border border-stone-100">
+                    <span className="font-semibold text-stone-800">Chocolate Glaze</span>
+                    <span className="font-mono text-stone-600">15 g / serving</span>
+                  </div>
+                </div>
+
+                <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-between text-xs">
+                  <span className="text-emerald-900 font-medium text-[11px]">Calculated Plate Food Cost:</span>
+                  <span className="font-mono font-bold text-[#008726]">₹6.20 / portion</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Description */}
+          <div className="lg:col-span-6 space-y-3 sm:space-y-4 order-1 lg:order-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#008726] font-mono">
+              DYNAMIC RECIPE FORMULATIONS
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#141414] tracking-tight leading-tight">
+              Restaurant <span className="text-[#008726]">Inventory auto-deduction</span> on every sold dish
+            </h3>
+            <p className="text-stone-600 text-xs sm:text-sm leading-relaxed">
+              Link raw ingredients to menu dishes with granular portion precision. As orders are punched in the POS or mobile QR menu, Tavola automatically reduces ingredient inventory in real-time, eliminating midnight manual stock counting.
+            </p>
+            <div className="pt-1">
+              <Link href="/demo" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0B3B24] hover:text-[#008726] transition-colors">
+                <span>Configure sub-gram BOM formulas</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Feature 2: Supplier Rate Shift Radar */}
+        <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 items-center">
+          {/* Left: Description */}
+          <div className="lg:col-span-6 space-y-3 sm:space-y-4">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#008726] font-mono">
+              PURCHASE BILL RADAR
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#141414] tracking-tight leading-tight">
+              Catch <span className="text-[#008726]">supplier rate shifts ≥5%</span> before paying vendor invoices
+            </h3>
+            <p className="text-stone-600 text-xs sm:text-sm leading-relaxed">
+              Ingredient price creep silently eats restaurant margins. Tavola scans every logged supplier bill, flagging rate increases and comparing historical prices across multiple vendors so you always buy at the best rate.
+            </p>
+            <div className="pt-1">
+              <Link href="/demo" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0B3B24] hover:text-[#008726] transition-colors">
+                <span>Explore vendor rate intelligence</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Right: UI Card Mockup */}
+          <div className="lg:col-span-6">
+            <div className="rounded-3xl bg-[#FAF7EE] p-5 sm:p-7 shadow-xl border border-[#DDD6C0] relative overflow-hidden">
+              <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-md border border-stone-200 space-y-3">
+                <div className="flex items-center justify-between pb-2 border-b border-stone-200">
+                  <span className="font-bold text-xs text-stone-900 flex items-center gap-1.5">
+                    <TrendingUp className="w-3.5 h-3.5 text-amber-600" /> Supplier Invoice Verification
+                  </span>
+                  <span className="px-2 py-0.5 rounded bg-amber-50 text-amber-800 text-[10px] font-bold border border-amber-200">
+                    Shift Alert Active
+                  </span>
+                </div>
+
+                <div className="p-3 rounded-xl bg-amber-50/70 border border-amber-200/80 text-xs space-y-1">
+                  <div className="flex justify-between font-bold text-stone-900">
+                    <span>Fresh Malai Paneer (20 kg)</span>
+                    <span className="text-amber-800 font-mono">+6.8% Increase</span>
+                  </div>
+                  <div className="text-[11px] text-stone-600 flex justify-between">
+                    <span>Last Rate: ₹280/kg</span>
+                    <span className="font-bold text-stone-900">New Bill: ₹299/kg</span>
+                  </div>
+                  <div className="text-[10px] text-amber-900 font-medium pt-1">
+                    ⚠️ Supplier rate shift exceeds 5% threshold. Manager review required.
+                  </div>
+                </div>
+
+                <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between text-xs">
+                  <span className="text-[#008726] font-medium text-[11px]">Bulk Pack Savings Radar:</span>
+                  <span className="font-mono font-bold text-[#008726]">Save -8.5% with Metro Dairy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Feature 3: Day-End Closing Reconciliation */}
+        <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 items-center">
+          {/* Left: UI Card Mockup */}
+          <div className="lg:col-span-6 order-2 lg:order-1">
+            <div className="rounded-3xl bg-[#0B3B24] p-5 sm:p-7 shadow-xl border border-emerald-700/50 relative overflow-hidden">
+              <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-md border border-stone-200 space-y-3">
+                <div className="flex items-center justify-between pb-2 border-b border-stone-200">
+                  <span className="font-bold text-xs text-stone-900 flex items-center gap-1.5">
+                    <FileSpreadsheet className="w-3.5 h-3.5 text-[#008726]" /> Day-End Closing Balance Formula
+                  </span>
+                  <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-700 text-[10px] font-bold">
+                    FIFO Reconciled
+                  </span>
+                </div>
+
+                <div className="p-3 rounded-xl bg-stone-50 border border-stone-200 font-mono text-[11px] space-y-1.5 text-stone-700">
+                  <div className="flex justify-between">
+                    <span>1. Opening Stock Valuation</span>
+                    <span className="font-bold text-stone-900">₹3,610.00</span>
+                  </div>
+                  <div className="flex justify-between text-[#008726]">
+                    <span>2. (+) Purchases Today</span>
+                    <span>+₹0.00</span>
+                  </div>
+                  <div className="flex justify-between text-blue-600">
+                    <span>3. (-) BOM Order Consumption</span>
+                    <span>-₹0.00</span>
+                  </div>
+                  <div className="flex justify-between text-rose-600">
+                    <span>4. (-) Logged Kitchen Waste</span>
+                    <span>₹0.00</span>
+                  </div>
+                  <div className="flex justify-between font-bold text-stone-900 pt-1.5 border-t border-stone-200 text-xs">
+                    <span>Closing Stock Valuation:</span>
+                    <span className="text-[#008726]">₹3,610.00</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between pt-1 text-[11px]">
+                  <span className="text-stone-500 font-mono">Export: Excel (.xlsx) / CSV</span>
+                  <span className="px-2.5 py-1 rounded-lg bg-[#008726] text-white font-bold text-[10px] cursor-pointer">
+                    Download Day Report
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Description */}
+          <div className="lg:col-span-6 space-y-3 sm:space-y-4 order-1 lg:order-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#008726] font-mono">
+              AUDIT COMPLIANCE
+            </span>
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#141414] tracking-tight leading-tight">
+              Day-end <span className="text-[#008726]">audit reconciliation</span> that balances to the gram
+            </h3>
+            <p className="text-stone-600 text-xs sm:text-sm leading-relaxed">
+              Say goodbye to unexplainable inventory variances. Tavola computes theoretical closing balances using continuous FIFO valuation and order consumption, highlighting spoilage, pilferage, and over-portioning instantly.
+            </p>
+            <div className="pt-1">
+              <Link href="/demo" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0B3B24] hover:text-[#008726] transition-colors">
+                <span>View daily audit ledger workflow</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      {/* =========================================================================
           5. DEEP PERPETUAL INVENTORY & RECIPE BOM ENGINE
              - Outer 5-Pills Switcher
              - Active Tab Specification Header & 3-Pill Capsule
