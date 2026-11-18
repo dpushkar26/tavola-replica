@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-script: 'Dancing Script', cursive;
+  --color-forest: #0B3B24;
+  --color-forest-dark: #082b1a;
+  --color-lime-accent: #BCE440;
+  --color-cream: #FAF7EE;
+}
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-script: 'Dancing Script', cursive;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #FAF7EE;
+    color: #141414;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: rgba(188, 228, 64, 0.4);
+    color: #0B3B24;
+  }
+}
+
+/* ============================================================ */
+/* KEYFRAME ANIMATIONS                                          */
+/* ============================================================ */
+
+/* Hero Phone Mockup Floating Buoyancy */
+@keyframes float-phone {
+  0%, 100% {
+    transform: translateY(0px);
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.22));
+  }
+  50% {
+    transform: translateY(-9px);
+    filter: drop-shadow(0 28px 40px rgba(0, 0, 0, 0.28));
+  }
+}
+
+/* Hero Settled Badge Floating (Out-of-phase) */
+@keyframes float-card {
+  0%, 100% {
+    transform: translateY(0px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.32);
+  }
+  50% {
+    transform: translateY(-7px);
+    box-shadow: 0 28px 55px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Subtle Desktop Window Ambient Float */
+@keyframes float-subtle-window {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* Smooth Content Entrance */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Subtle Shimmer for CTA buttons */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Subtle Breathing Pulse */
+@keyframes pulse-gentle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 0.95;
+  }
+}
+
+/* ============================================================ */
+/* ANIMATION UTILITY CLASSES                                    */
+/* ============================================================ */
+
+.animate-float-phone {
+  animation: float-phone 6.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.animate-float-card {
+  animation: float-card 5.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite 0.7s;
+}
+
+.animate-float-window {
+  animation: float-subtle-window 8s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-gentle {
+  animation: pulse-gentle 3s ease-in-out infinite;
+}
+
+/* Custom Scrollbar Utilities */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================================ */
+/* RANGE SLIDER STYLING (Savings Calculator)                    */
+/* ============================================================ */
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #E5DEC9;
+  height: 8px;
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+input[type="range"]:hover {
+  background: #DDD5BF;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #0B3B24;
+  cursor: grab;
+  border: 3px solid #FAF7EE;
+  box-shadow: 0 2px 6px rgba(11, 59, 36, 0.35);
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.18);
+  background: #082b1a;
+  box-shadow: 0 3px 10px rgba(11, 59, 36, 0.45);
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.08);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #0B3B24;
+  cursor: grab;
+  border: 3px solid #FAF7EE;
+  box-shadow: 0 2px 6px rgba(11, 59, 36, 0.35);
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s ease;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.18);
+  background: #082b1a;
+}
