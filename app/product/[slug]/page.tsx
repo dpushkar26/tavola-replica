@@ -5,6 +5,8 @@ import {
   Wallet, 
   Dumbbell, 
   Milk, 
+  Building2,
+  GraduationCap,
   CheckCircle2, 
   ArrowRight, 
   TrendingUp, 
@@ -28,7 +30,7 @@ interface ProductData {
   title: string;
   tagline: string;
   description: string;
-  iconName: 'boxes' | 'wallet' | 'dumbbell' | 'milk';
+  iconName: 'boxes' | 'wallet' | 'dumbbell' | 'milk' | 'hotel' | 'school';
   stats: { value: string; label: string }[];
   features: { title: string; desc: string }[];
   mockup: {
@@ -170,13 +172,79 @@ const PRODUCTS_DATA: Record<string, ProductData> = {
       ],
     },
   },
+  hotel: {
+    slug: 'hotel',
+    badge: 'ENTERPRISE HOSPITALITY & PROPERTY MANAGEMENT',
+    title: 'Multi-Chain Hotel Management',
+    tagline: 'Centralized front-desk, multi-property room inventory, banquet billing & guest CRM.',
+    description: 'Unify reservations across boutique stays, multi-city hotel chains, and luxury resorts. Automate housekeeping room turns, manage banquet hall bookings, and track guest folio balances with zero double-bookings.',
+    iconName: 'hotel',
+    stats: [
+      { value: '99.9%', label: 'Multi-Property Room Parity' },
+      { value: '< 20s', label: 'Express Mobile Check-In' },
+      { value: '100%', label: 'Centralized Banquet Folio' },
+    ],
+    features: [
+      { title: 'Centralized Multi-Property Grid', desc: 'Manage room tariffs, live availability, and block allocations across all your properties from a single executive dashboard.' },
+      { title: 'Housekeeping & Maintenance Dispatch', desc: 'Instantly notify room attendants when guests check out, with digital inspection check-offs before rooms show available.' },
+      { title: 'Banquet & Event Operations', desc: 'Quote, schedule, and invoice banquet halls, conferences, and destination weddings with customized catering menus.' },
+      { title: 'Direct OTA & POS Folio Routing', desc: 'Sync with Booking.com, Agoda, and MakeMyTrip, and route restaurant and spa bills directly to the guest room folio.' },
+    ],
+    mockup: {
+      title: 'Grand Heritage Hotel & Suites',
+      subtitle: 'Live Front Desk & Multi-Property Folio',
+      metricTitle: "Today's Occupancy Rate",
+      metricValue: '88.5%',
+      metricChange: '142 / 160 Rooms Checked-In',
+      items: [
+        { label: 'Room 402 • Executive Suite', sub: 'Guest: Vikramaditya Verma • 3 Nights • Direct Booking', status: 'Checked-In', statusType: 'success' },
+        { label: 'Grand Ballroom A • Corporate Summit', sub: '250 Guests • Buffet & AV Package • Folio Active', status: 'In Progress', statusType: 'info' },
+        { label: 'Room 208 • Deluxe Garden View', sub: 'Housekeeping Cleaned & Sanitized by Staff #H-12', status: 'Ready for Guest', statusType: 'success' },
+        { label: 'Room 315 • Restaurant Charge Post', sub: 'Dinner Bill ₹3,450 Transferred to Room Account', status: 'Folio Settled', statusType: 'success' },
+      ],
+    },
+  },
+  school: {
+    slug: 'school',
+    badge: 'CAMPUS & INSTITUTION MANAGEMENT • UPCOMING',
+    title: 'School ERP System',
+    tagline: 'All-in-one student admissions, automated fee collection, attendance biometrics & parent portal.',
+    description: 'A modern, cloud-first school management system for K-12 schools, academies, and coaching institutes. Automate fee collection with instant receipt generation, manage biometric gate turnstiles, and connect parents via a branded mobile app.',
+    iconName: 'school',
+    stats: [
+      { value: '100%', label: 'Digital Fee Collection' },
+      { value: '< 1s', label: 'RFID Gate Attendance' },
+      { value: 'Upcoming', label: 'Launching Q3 2026' },
+    ],
+    features: [
+      { title: 'Automated Student Admissions', desc: 'Digital enrollment forms, merit lists, student document archiving, and automated roll-number allocations.' },
+      { title: 'Fee Schedules & Instant UPI Receipts', desc: 'Send automated WhatsApp payment reminders with one-click UPI links and real-time ledger settlement.' },
+      { title: 'Biometric Gate & Transport Tracking', desc: 'Live RFID check-in notifications to parents and real-time GPS tracking for student bus routes.' },
+      { title: 'Digital Gradebook & Report Cards', desc: 'Teachers log exam marks, calculate percentile ranks, and publish CBSE/ICSE compliant report cards in one click.' },
+    ],
+    mockup: {
+      title: 'Greenwood International Academy',
+      subtitle: 'Academic Operations & Campus ERP',
+      metricTitle: 'Active Enrolled Students',
+      metricValue: '2,480 Students',
+      metricChange: '98.4% Morning Attendance Logged',
+      items: [
+        { label: 'Grade 10-A • Morning Gate Biometrics', sub: '44/45 Students Checked-In (1 Leave Approved)', status: 'Verified', statusType: 'success' },
+        { label: 'Q2 Tuition & Lab Fee Counter', sub: '₹18,45,000 Collected Online via UPI Today', status: 'Reconciled', statusType: 'success' },
+        { label: 'Campus Bus Route 08 (North Zone)', sub: 'On Schedule • ETA Campus Gate 07:55 AM', status: 'En Route', statusType: 'info' },
+        { label: 'Mid-Term Examinations Report Card', sub: '320 Gradebook Submissions Awaiting Approval', status: 'Pending Review', statusType: 'warning' },
+      ],
+    },
+  },
 };
 
 export function generateStaticParams() {
   return [
     { slug: 'expenses' },
+    { slug: 'hotel' },
     { slug: 'gym' },
     { slug: 'dairy' },
+    { slug: 'school' },
   ];
 }
 
@@ -198,10 +266,14 @@ export default async function ProductDetailPage({
         return <Boxes className="w-8 h-8 text-[#0B3B24]" />;
       case 'wallet':
         return <Wallet className="w-8 h-8 text-amber-700" />;
+      case 'hotel':
+        return <Building2 className="w-8 h-8 text-purple-700" />;
       case 'dumbbell':
         return <Dumbbell className="w-8 h-8 text-blue-700" />;
       case 'milk':
         return <Milk className="w-8 h-8 text-emerald-700" />;
+      case 'school':
+        return <GraduationCap className="w-8 h-8 text-rose-700" />;
     }
   };
 

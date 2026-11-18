@@ -16,6 +16,8 @@ import {
   Wallet,
   Dumbbell,
   Milk,
+  Building2,
+  GraduationCap,
   Sparkles,
   ArrowUpRight,
 } from 'lucide-react';
@@ -27,34 +29,50 @@ export const SUB_PRODUCTS = [
   {
     id: 'inventory',
     title: 'Inventory Management',
-    desc: 'Ingredient-level stock tracking, automatic low-stock alerts & vendor...',
+    desc: 'Ingredient-level stock tracking, automated low-stock alerts & vendor purchase orders.',
     href: '/product/inventory',
     badge: 'POPULAR',
-    badgeColor: 'bg-[#D1FADF] text-[#027A48]',
+    badgeColor: 'bg-[#D1FADF] text-[#027A48] border-emerald-200/60',
   },
   {
     id: 'expenses',
     title: 'Expenses Tracker',
-    desc: 'Daily cash outflows, vendor bill settlement, petty cash slips & live P&L...',
+    desc: 'Daily cash outflows, vendor bill settlements, petty cash slips & live P&L margins.',
     href: '/product/expenses',
     badge: 'FINANCE',
-    badgeColor: 'bg-[#FEF0C7] text-[#B54708]',
+    badgeColor: 'bg-[#FEF0C7] text-[#B54708] border-amber-200/60',
+  },
+  {
+    id: 'hotel',
+    title: 'Multi-Chain Hotel Management',
+    desc: 'Multi-property reservations, room inventory, housekeeping & banquet billing.',
+    href: '/product/hotel',
+    badge: 'ENTERPRISE',
+    badgeColor: 'bg-[#F4EBFF] text-[#6941C6] border-purple-200/60',
   },
   {
     id: 'gym',
     title: 'Gym Management',
-    desc: 'Member subscriptions, biometric turnstiles, attendance tracking & traine...',
+    desc: 'Member subscriptions, biometric turnstiles, attendance tracking & trainer slots.',
     href: '/product/gym',
     badge: 'NEW',
-    badgeColor: 'bg-[#D1E9FF] text-[#175CD3]',
+    badgeColor: 'bg-[#D1E9FF] text-[#175CD3] border-blue-200/60',
   },
   {
     id: 'dairy',
     title: 'Dairy Management',
-    desc: 'Morning milk collection, automated fat/SNF rate charts & farmer passbook...',
+    desc: 'Morning milk collection, automated fat/SNF rate charts & farmer passbooks.',
     href: '/product/dairy',
     badge: 'SPECIALIZED',
-    badgeColor: 'bg-[#CCFBEF] text-[#0E7090]',
+    badgeColor: 'bg-[#CCFBEF] text-[#0E7090] border-teal-200/60',
+  },
+  {
+    id: 'school',
+    title: 'School ERP System',
+    desc: 'Student admissions, fee collection, attendance biometrics & parent portal.',
+    href: '/product/school',
+    badge: 'UPCOMING',
+    badgeColor: 'bg-[#FFE4E8] text-[#C11574] border-rose-200/60',
   },
 ];
 
@@ -64,10 +82,14 @@ function SubProductIcon({ id, className = "w-5 h-5" }: { id: string; className?:
       return <Boxes className={className} />;
     case 'expenses':
       return <Wallet className={className} />;
+    case 'hotel':
+      return <Building2 className={className} />;
     case 'gym':
       return <Dumbbell className={className} />;
     case 'dairy':
       return <Milk className={className} />;
+    case 'school':
+      return <GraduationCap className={className} />;
     default:
       return <Smartphone className={className} />;
   }
@@ -162,27 +184,32 @@ export function LandingNavbar({ user = null }: { user?: any }) {
               {/* Desktop Sub Nav Drawer Flyout */}
               {productsDropdownOpen && (
                 <div 
-                  className="absolute left-0 top-[calc(100%+6px)] w-[680px] max-w-[92vw] rounded-2xl bg-[#FCFAF6] border border-stone-200/90 shadow-[0_20px_50px_-10px_rgba(11,59,36,0.12),0_4px_12px_rgba(0,0,0,0.04)] p-4.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3"
+                  className="absolute left-0 top-[calc(100%+6px)] w-[760px] max-w-[94vw] rounded-2xl bg-[#FCFAF6] border border-stone-200/90 shadow-[0_25px_60px_-15px_rgba(11,59,36,0.15),0_4px_16px_rgba(0,0,0,0.04)] p-4.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
                   {/* Drawer Header */}
-                  <div className="flex items-center gap-2 pb-3 mb-3 border-b border-stone-200/80">
-                    <span className="w-2 h-2 rounded-full bg-[#00ab14]"></span>
-                    <span className="text-[11px] font-bold tracking-wider text-[#0B3B24] uppercase font-sans">
-                      TAVOLA OPERATIONS SUITE
+                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-stone-200/80">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[#00ab14]"></span>
+                      <span className="text-[11px] font-bold tracking-wider text-[#0B3B24] uppercase font-sans">
+                        TAVOLA OPERATIONS SUITE
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-mono font-bold text-stone-400 uppercase tracking-wider">
+                      6 Industry Modules
                     </span>
                   </div>
 
-                  {/* Sub Nav Items 2x2 Grid */}
-                  <div className="grid grid-cols-2 gap-3">
+                  {/* Sub Nav Items 2x3 Grid */}
+                  <div className="grid grid-cols-2 gap-2.5">
                     {SUB_PRODUCTS.map((item) => {
                       const isCurrent = pathname === item.href;
                       return (
                         <Link
                           key={item.id}
                           href={item.href}
-                          className={`p-3.5 rounded-2xl border transition-all duration-150 group flex items-start gap-3 bg-white ${
+                          className={`p-3 rounded-2xl border transition-all duration-150 group flex items-start gap-3 bg-white ${
                             isCurrent
                               ? 'border-[#0B3B24] ring-1 ring-[#0B3B24]/20 shadow-xs'
                               : 'border-stone-200/80 hover:border-[#0B3B24]/40 hover:shadow-xs'
@@ -194,14 +221,14 @@ export function LandingNavbar({ user = null }: { user?: any }) {
                           
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between gap-1.5 mb-1">
-                              <span className="text-[13.5px] font-bold text-[#141414] group-hover:text-[#0B3B24] transition-colors leading-tight truncate">
+                              <span className="text-[13px] font-bold text-[#141414] group-hover:text-[#0B3B24] transition-colors leading-tight truncate">
                                 {item.title}
                               </span>
-                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wide shrink-0 ${item.badgeColor}`}>
+                              <span className={`text-[9.5px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider shrink-0 font-mono ${item.badgeColor}`}>
                                 {item.badge}
                               </span>
                             </div>
-                            <p className="text-[11.5px] text-stone-500 group-hover:text-stone-700 transition-colors leading-snug line-clamp-2">
+                            <p className="text-[11px] text-stone-500 group-hover:text-stone-700 transition-colors leading-snug line-clamp-2">
                               {item.desc}
                             </p>
                           </div>
