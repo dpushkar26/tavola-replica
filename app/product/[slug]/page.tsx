@@ -12,13 +12,17 @@ import {
   TrendingUp, 
   ShieldCheck, 
   Zap, 
-  Sparkles,
-  Smartphone,
-  Laptop,
-  Check,
-  ChevronRight,
-  Store,
-  Play
+  Sparkles, 
+  Smartphone, 
+  Laptop, 
+  Check, 
+  ChevronRight, 
+  Store, 
+  Play,
+  Clock,
+  Bell,
+  Mail,
+  Calendar
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { LandingNavbar } from '@/components/landing/LandingNavbar';
@@ -44,81 +48,49 @@ interface ProductData {
 }
 
 const PRODUCTS_DATA: Record<string, ProductData> = {
-  inventory: {
-    slug: 'inventory',
-    badge: 'INVENTORY & RAW MATERIAL CONTROL',
-    title: 'Smart Inventory Management',
-    tagline: 'Track every gram, eliminate kitchen wastage, and automate supplier orders.',
-    description: 'Directly link your menu dishes to raw ingredients like oils, vegetables, meats, and dairy. When a ticket is fired, stock reduces in real-time with automatic low-level reorder alerts.',
-    iconName: 'boxes',
+  hotel: {
+    slug: 'hotel',
+    badge: 'HOSPITALITY & MULTI-PROPERTY PMS',
+    title: 'Multi-Chain Hotel Hub',
+    tagline: 'Multi-property reservations, front-desk room inventory, housekeeping & banquet billing.',
+    description: 'Centralize reservations, room tariffs, and guest folios across multiple hotel properties. Coordinate housekeeping turns, banquet event packages, and seamless restaurant dining room-charge transfers.',
+    iconName: 'hotel',
     stats: [
-      { value: '38%', label: 'Average Reduction in Food Waste' },
-      { value: '0 Min', label: 'Midnight Manual Count Delay' },
-      { value: '99.8%', label: 'Audit & Variance Accuracy' },
+      { value: '99.4%', label: 'Reservation Sync Rate' },
+      { value: '18 Min', label: 'Average Room Turnaround' },
+      { value: '0 Error', label: 'Banquet & Folio Settlement' },
     ],
     features: [
-      { title: 'Recipe-Level Ingredient Deductions', desc: 'Break down each menu dish into exact raw portions. Selling 1 plate of Butter Chicken instantly deducts 220g chicken, 40g butter, and spices.' },
-      { title: 'Predictive Low-Stock Alerts', desc: 'Get SMS and dashboard warnings before you run out of fast-moving items during busy dinner rushes.' },
-      { title: '1-Click Vendor Purchase Orders', desc: 'Consolidate low items and send structured WhatsApp/Email purchase requests to your verified suppliers in seconds.' },
-      { title: 'Pilferage & Variance Reports', desc: 'Compare physical opening/closing audits against theoretical consumption to spot leakages instantly.' },
+      { title: 'Front-Desk Room Inventory Matrix', desc: 'Real-time room status grid (Clean, Occupied, Dirty, Maintenance) with 1-click check-in and luggage tags.' },
+      { title: 'Multi-Property Corporate Folios', desc: 'Manage master guest corporate billing with consolidated tax invoices across all chain properties.' },
+      { title: 'Banquet & Event Management', desc: 'Book event halls, plan wedding catering menus, and manage AV packages with milestone advance billing.' },
+      { title: 'Restaurant POS to Room Charge Post', desc: 'Guests charge cafe and room dining straight to their room folio with instant verification.' },
     ],
     mockup: {
-      title: 'Real-Time Stock Audit',
-      subtitle: 'Central Kitchen & Pantry Stores',
-      metricTitle: 'Active Ingredients Tracked',
-      metricValue: '184 Items',
-      metricChange: '12 Low Stock Alerts',
+      title: 'Grand Palace Hotel & Suites',
+      subtitle: 'Property #01 • Front Desk & Room Inventory',
+      metricTitle: 'Occupancy Rate Today',
+      metricValue: '86% (43 / 50 Rooms)',
+      metricChange: '+12% vs last weekend',
       items: [
-        { label: 'Fresh Paneer (Dairy)', sub: 'Available: 2.1 kg (Min 4.0 kg)', status: 'Low Stock • Order', statusType: 'warning' },
-        { label: 'Boneless Chicken Breast', sub: 'Available: 18.5 kg (Min 5.0 kg)', status: 'Sufficient', statusType: 'success' },
-        { label: 'Cooking Oil (Mustard 5L)', sub: 'Available: 14 Tins (Min 3 Tins)', status: 'Optimal', statusType: 'success' },
-        { label: 'Basmati Rice (Grade A)', sub: 'Available: 35 kg (Min 20 kg)', status: 'In Transit', statusType: 'info' },
-      ],
-    },
-  },
-  expenses: {
-    slug: 'expenses',
-    badge: 'EXPENSES & CASH FLOW TRACKER',
-    title: 'Automated Expenses Tracker',
-    tagline: 'Complete visibility into daily vendor payouts, utility bills, and true profit margins.',
-    description: 'Stop guessing your month-end profits. Tavola captures petty cash slips, bulk vendor invoices, staff advances, and utility costs to deliver a live, automated Profit & Loss statement.',
-    iconName: 'wallet',
-    stats: [
-      { value: '₹42,000+', label: 'Avg Monthly Untracked Leakage Prevented' },
-      { value: '100%', label: 'GST Input Tax Credit Match' },
-      { value: '0.4s', label: 'Instant Cash Drawer Reconciliation' },
-    ],
-    features: [
-      { title: 'Daily Cash Outflow Logs', desc: 'Easily record market runs, ice purchases, or courier expenses with receipt photo attachments right from your smartphone.' },
-      { title: 'Vendor Payable Schedules', desc: 'Track pending supplier bills, due dates, and paid vouchers so you never incur supplier late fees or disputes.' },
-      { title: 'Automatic Gross vs Net Margin Analysis', desc: 'Real-time calculation of Food Cost Percentage (FC%) and prime costs against daily gross revenue.' },
-      { title: 'Tally & Accounting Export', desc: 'One-click export formatted for standard accountants and Indian GST filing systems.' },
-    ],
-    mockup: {
-      title: 'Daily Operations P&L Ledger',
-      subtitle: 'Verified Cash & Bank Ledger',
-      metricTitle: "Today's Net Margin",
-      metricValue: '₹34,850',
-      metricChange: '+18.4% vs last week',
-      items: [
-        { label: 'Morning Fresh Produce Vendor', sub: 'Invoice #INV-8821 • Vegetables & Herbs', status: '₹4,200 Paid', statusType: 'success' },
-        { label: 'Monthly Electricity & HVAC', sub: 'Commercial Meter Due in 3 days', status: '₹14,500 Pending', statusType: 'warning' },
-        { label: 'Staff Advance Payment', sub: 'Kitchen Commis II Voucher', status: '₹2,000 Approved', statusType: 'info' },
-        { label: 'Dairy Supply Direct Settlement', sub: '35 Liters Milk + Cream', status: '₹2,450 Settled', statusType: 'success' },
+        { label: 'Room 402 • Executive Suite', sub: 'Guest: Vikramaditya Verma • 3 Nights • Direct Booking', status: 'Checked-In', statusType: 'success' },
+        { label: 'Grand Ballroom A • Corporate Summit', sub: '250 Guests • Buffet & AV Package • Folio Active', status: 'In Progress', statusType: 'info' },
+        { label: 'Room 208 • Deluxe Garden View', sub: 'Housekeeping Cleaned & Sanitized by Staff #H-12', status: 'Ready for Guest', statusType: 'success' },
+        { label: 'Room 315 • Restaurant Charge Post', sub: 'Dinner Bill ₹3,450 Transferred to Room Account', status: 'Folio Settled', statusType: 'success' },
       ],
     },
   },
   gym: {
     slug: 'gym',
-    badge: 'FITNESS & GYM OPERATIONS',
+    badge: 'FITNESS & GYM OPERATIONS • LAUNCHING SOON',
     title: 'Smart Gym Management',
     tagline: 'Effortless member check-ins, automated subscription renewals, and trainer schedules.',
     description: 'Designed for modern fitness studios, gym chains, and CrossFit boxes. Automate membership renewals via WhatsApp, sync turnstile biometric access, and track trainer commissions seamlessly.',
     iconName: 'dumbbell',
     stats: [
-      { value: '94%', label: 'On-Time Membership Renewal Rate' },
-      { value: '3 Sec', label: 'Rapid Turnstile Check-In Speed' },
-      { value: '0', label: 'Unpaid Member Entry Instances' },
+      { value: 'Upcoming', label: 'Launching Q3/Q4 2026' },
+      { value: 'WhatsApp', label: 'Automated Renewal Links' },
+      { value: 'Biometric', label: 'RFID & Turnstile Gate Sync' },
     ],
     features: [
       { title: 'Automated WhatsApp Dues Reminders', desc: 'Members receive polite reminder links with integrated UPI payment 5 days before subscription expiry.' },
@@ -129,92 +101,28 @@ const PRODUCTS_DATA: Record<string, ProductData> = {
     mockup: {
       title: 'Fitness Studio Live Gate',
       subtitle: 'Main Turnstile & Floor Roster',
-      metricTitle: 'Active Members Present',
-      metricValue: '48 / 80 Pax',
-      metricChange: 'Peak Hour Flow',
+      metricTitle: 'Pilot Launch Target',
+      metricValue: 'Late 2026',
+      metricChange: 'Early Access Waitlist Active',
       items: [
-        { label: 'Vikram Mehta (Gold Tier)', sub: 'Valid till Nov 2026 • 248 Days Left', status: 'Access Granted', statusType: 'success' },
-        { label: 'Ananya Sharma (Personal PT)', sub: 'Assigned to Trainer Arjun (Slot 07:00)', status: 'Checked In', statusType: 'info' },
-        { label: 'Rohan Deshmukh (Basic)', sub: 'Subscription Expired 2 days ago', status: 'Gate Locked • UPI Sent', statusType: 'warning' },
-        { label: 'Pooja Nair (Morning Yoga)', sub: 'Class #04 • Room B', status: 'Attended', statusType: 'success' },
-      ],
-    },
-  },
-  dairy: {
-    slug: 'dairy',
-    badge: 'MILK PROCUREMENT & DAIRY ERP',
-    title: 'Precision Dairy Management',
-    tagline: 'Automate milk collection, fat & SNF rate calculations, farmer ledgers, and delivery routes.',
-    description: 'The end-to-end management suite for milk collection centers, chilling plants, and urban dairy distributors. Capture fat percentages, compute payouts with dynamic rate charts, and manage daily milk rounds.',
-    iconName: 'milk',
-    stats: [
-      { value: '100%', label: 'Fat & SNF Rate Calculation Accuracy' },
-      { value: '0 Dispute', label: 'Farmer Passbook Settlements' },
-      { value: '2.5 Hrs', label: 'Daily Delivery Dispatch Saved' },
-    ],
-    features: [
-      { title: 'Automated Fat & SNF Testing Sync', desc: 'Connect with electronic milk analyzers and weighing scales to record morning and evening shifts without manual pen-and-paper entry.' },
-      { title: 'Dynamic Matrix Rate Charts', desc: 'Auto-calculate exact milk price per liter based on cow/buffalo fat percentage and lactometer SNF formulas.' },
-      { title: 'Instant Farmer Passbook & SMS Receipts', desc: 'Farmers receive immediate SMS with quantity, fat reading, and credit amount with weekly direct bank payouts.' },
-      { title: 'Morning Milk Route Delivery Tracking', desc: 'Manage daily household milk packet subscriptions, route drop-offs, bottles returned, and monthly customer billing.' },
-    ],
-    mockup: {
-      title: 'Morning Shift Milk Collection',
-      subtitle: 'Weighing & Electronic Analyzer Intake',
-      metricTitle: "Today's Morning Intake",
-      metricValue: '1,420 Liters',
-      metricChange: 'Avg Fat 6.8% • SNF 9.1%',
-      items: [
-        { label: 'Farmer: Ramesh Patel (#F-102)', sub: 'Cow Milk • 38.5 L • Fat 4.2% • SNF 8.6%', status: '₹1,501.50 Credited', statusType: 'success' },
-        { label: 'Farmer: Suresh Yadav (#F-108)', sub: 'Buffalo Milk • 54.0 L • Fat 7.1% • SNF 9.2%', status: '₹3,024.00 Credited', statusType: 'success' },
-        { label: 'Chilling Vat 01 Storage', sub: 'Temperature: 3.8°C (Optimal Range)', status: 'Chilling Active', statusType: 'info' },
-        { label: 'Urban Route 04 (City Center)', sub: '180 Liters Packed for Distribution', status: 'Dispatched', statusType: 'success' },
-      ],
-    },
-  },
-  hotel: {
-    slug: 'hotel',
-    badge: 'ENTERPRISE HOSPITALITY & PROPERTY MANAGEMENT',
-    title: 'Multi-Chain Hotel Management',
-    tagline: 'Centralized front-desk, multi-property room inventory, banquet billing & guest CRM.',
-    description: 'Unify reservations across boutique stays, multi-city hotel chains, and luxury resorts. Automate housekeeping room turns, manage banquet hall bookings, and track guest folio balances with zero double-bookings.',
-    iconName: 'hotel',
-    stats: [
-      { value: '99.9%', label: 'Multi-Property Room Parity' },
-      { value: '< 20s', label: 'Express Mobile Check-In' },
-      { value: '100%', label: 'Centralized Banquet Folio' },
-    ],
-    features: [
-      { title: 'Centralized Multi-Property Grid', desc: 'Manage room tariffs, live availability, and block allocations across all your properties from a single executive dashboard.' },
-      { title: 'Housekeeping & Maintenance Dispatch', desc: 'Instantly notify room attendants when guests check out, with digital inspection check-offs before rooms show available.' },
-      { title: 'Banquet & Event Operations', desc: 'Quote, schedule, and invoice banquet halls, conferences, and destination weddings with customized catering menus.' },
-      { title: 'Direct OTA & POS Folio Routing', desc: 'Sync with Booking.com, Agoda, and MakeMyTrip, and route restaurant and spa bills directly to the guest room folio.' },
-    ],
-    mockup: {
-      title: 'Grand Heritage Hotel & Suites',
-      subtitle: 'Live Front Desk & Multi-Property Folio',
-      metricTitle: "Today's Occupancy Rate",
-      metricValue: '88.5%',
-      metricChange: '142 / 160 Rooms Checked-In',
-      items: [
-        { label: 'Room 402 • Executive Suite', sub: 'Guest: Vikramaditya Verma • 3 Nights • Direct Booking', status: 'Checked-In', statusType: 'success' },
-        { label: 'Grand Ballroom A • Corporate Summit', sub: '250 Guests • Buffet & AV Package • Folio Active', status: 'In Progress', statusType: 'info' },
-        { label: 'Room 208 • Deluxe Garden View', sub: 'Housekeeping Cleaned & Sanitized by Staff #H-12', status: 'Ready for Guest', statusType: 'success' },
-        { label: 'Room 315 • Restaurant Charge Post', sub: 'Dinner Bill ₹3,450 Transferred to Room Account', status: 'Folio Settled', statusType: 'success' },
+        { label: 'Turnstile Hardware Controller Sync', sub: 'Biometric & RFID access control integration', status: 'In Engineering', statusType: 'info' },
+        { label: 'WhatsApp Renewal Link Gateway', sub: 'UPI 1-click subscription payments', status: 'In Testing', statusType: 'success' },
+        { label: 'Trainer Commission Payout Engine', sub: 'Automated attendance-based commission splits', status: 'Planned', statusType: 'warning' },
+        { label: 'Member Nutrition & Routine App', sub: 'Custom training regimens assigned to member profiles', status: 'In Design', statusType: 'info' },
       ],
     },
   },
   school: {
     slug: 'school',
-    badge: 'CAMPUS & INSTITUTION MANAGEMENT • UPCOMING',
+    badge: 'CAMPUS & INSTITUTION MANAGEMENT • LAUNCHING SOON',
     title: 'School ERP System',
     tagline: 'All-in-one student admissions, automated fee collection, attendance biometrics & parent portal.',
     description: 'A modern, cloud-first school management system for K-12 schools, academies, and coaching institutes. Automate fee collection with instant receipt generation, manage biometric gate turnstiles, and connect parents via a branded mobile app.',
     iconName: 'school',
     stats: [
-      { value: '100%', label: 'Digital Fee Collection' },
+      { value: 'Upcoming', label: 'Launching Q3/Q4 2026' },
+      { value: '100% Digital', label: 'UPI Fee Reminders' },
       { value: '< 1s', label: 'RFID Gate Attendance' },
-      { value: 'Upcoming', label: 'Launching Q3 2026' },
     ],
     features: [
       { title: 'Automated Student Admissions', desc: 'Digital enrollment forms, merit lists, student document archiving, and automated roll-number allocations.' },
@@ -225,14 +133,14 @@ const PRODUCTS_DATA: Record<string, ProductData> = {
     mockup: {
       title: 'Greenwood International Academy',
       subtitle: 'Academic Operations & Campus ERP',
-      metricTitle: 'Active Enrolled Students',
-      metricValue: '2,480 Students',
-      metricChange: '98.4% Morning Attendance Logged',
+      metricTitle: 'Pilot Launch Target',
+      metricValue: 'Late 2026',
+      metricChange: 'Early Access Waitlist Active',
       items: [
-        { label: 'Grade 10-A • Morning Gate Biometrics', sub: '44/45 Students Checked-In (1 Leave Approved)', status: 'Verified', statusType: 'success' },
-        { label: 'Q2 Tuition & Lab Fee Counter', sub: '₹18,45,000 Collected Online via UPI Today', status: 'Reconciled', statusType: 'success' },
-        { label: 'Campus Bus Route 08 (North Zone)', sub: 'On Schedule • ETA Campus Gate 07:55 AM', status: 'En Route', statusType: 'info' },
-        { label: 'Mid-Term Examinations Report Card', sub: '320 Gradebook Submissions Awaiting Approval', status: 'Pending Review', statusType: 'warning' },
+        { label: 'Tuition Fee Schedules & UPI Receipts', sub: 'Automated WhatsApp invoice reminders with instant reconciliation', status: 'In Testing', statusType: 'success' },
+        { label: 'Campus RFID Turnstile Gate Controller', sub: 'Real-time parent notification on gate swipe', status: 'In Engineering', statusType: 'info' },
+        { label: 'Student Bus GPS Live Tracking', sub: 'School transport route monitoring & arrival alerts', status: 'Planned', statusType: 'warning' },
+        { label: 'Report Card & Marksheet Generator', sub: 'Automated gradebook calculations with printable CBSE templates', status: 'In Design', statusType: 'info' },
       ],
     },
   },
@@ -240,10 +148,8 @@ const PRODUCTS_DATA: Record<string, ProductData> = {
 
 export function generateStaticParams() {
   return [
-    { slug: 'expenses' },
     { slug: 'hotel' },
     { slug: 'gym' },
-    { slug: 'dairy' },
     { slug: 'school' },
   ];
 }
@@ -260,23 +166,183 @@ export default async function ProductDetailPage({
     notFound();
   }
 
+  const isLaunchingSoon = slug === 'gym' || slug === 'school';
+
   const getIcon = () => {
     switch (product.iconName) {
-      case 'boxes':
-        return <Boxes className="w-8 h-8 text-[#0B3B24]" />;
-      case 'wallet':
-        return <Wallet className="w-8 h-8 text-amber-700" />;
       case 'hotel':
         return <Building2 className="w-8 h-8 text-purple-700" />;
       case 'dumbbell':
         return <Dumbbell className="w-8 h-8 text-blue-700" />;
-      case 'milk':
-        return <Milk className="w-8 h-8 text-emerald-700" />;
       case 'school':
         return <GraduationCap className="w-8 h-8 text-rose-700" />;
+      default:
+        return <Boxes className="w-8 h-8 text-[#0B3B24]" />;
     }
   };
 
+  /* =========================================================================
+      LAUNCHING SOON / COMING SOON VIEW (FOR GYM AND SCHOOL ERP)
+     ========================================================================= */
+  if (isLaunchingSoon) {
+    return (
+      <div className="min-h-screen bg-[#FBFBF9] text-[#141414] font-sans antialiased overflow-x-hidden selection:bg-[#BCE440]/40 selection:text-[#0B3B24]">
+        {/* 1. TOP NAVBAR */}
+        <LandingNavbar />
+
+        {/* 2. BREADCRUMBS */}
+        <div className="border-b border-stone-200/80 bg-white/70 backdrop-blur-md px-3 xs:px-4 sm:px-6 lg:px-12 py-2.5 text-xs">
+          <div className="max-w-[1440px] mx-auto flex items-center justify-between gap-2">
+            <div className="flex items-center gap-1.5 text-stone-500 font-medium overflow-x-auto no-scrollbar whitespace-nowrap py-0.5">
+              <Link href="/" className="hover:text-[#0B3B24] transition-colors shrink-0">Tavola</Link>
+              <span className="shrink-0 text-stone-300">/</span>
+              <Link href="/product" className="hover:text-[#0B3B24] transition-colors shrink-0">Products</Link>
+              <span className="shrink-0 text-stone-300">/</span>
+              <span className="text-[#0B3B24] font-bold shrink-0">{product.title}</span>
+            </div>
+
+            <div className="flex items-center gap-2 text-[11px] text-amber-800 font-mono font-bold shrink-0 bg-amber-50 px-2.5 py-0.5 rounded border border-amber-200">
+              <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+              <span>LAUNCHING SOON • Q3/Q4 2026</span>
+            </div>
+          </div>
+        </div>
+
+        {/* 3. HERO / LAUNCHING SOON SPOTLIGHT */}
+        <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 max-w-5xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-300 text-amber-900 text-xs font-bold tracking-tight mb-4 shadow-2xs">
+            <Clock className="w-3.5 h-3.5 text-amber-700" />
+            <span>EARLY ACCESS WAITLIST ACTIVE • TARGET LAUNCH 2026</span>
+          </div>
+
+          <div className="w-20 h-20 rounded-3xl bg-[#FAF7EE] border border-[#DDD6C0] flex items-center justify-center mx-auto mb-6 shadow-sm">
+            {getIcon()}
+          </div>
+
+          <h1 className="text-3xl xs:text-4xl sm:text-5xl font-black text-[#141414] tracking-tight leading-tight uppercase">
+            {product.title} is Launching Soon
+          </h1>
+
+          <p className="mt-4 text-base sm:text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed">
+            {product.description}
+          </p>
+
+          {/* Waitlist / Early Access Action Card */}
+          <div className="mt-8 p-6 sm:p-8 rounded-3xl bg-white border border-stone-200 shadow-sm max-w-xl mx-auto space-y-4">
+            <div className="text-xs font-bold uppercase tracking-wider text-[#008726] font-mono">
+              RESERVE YOUR EARLY ACCESS SEAT
+            </div>
+            <h3 className="text-lg font-bold text-stone-900">
+              Be the first to pilot {product.title} in your city
+            </h3>
+            <p className="text-xs text-stone-500 leading-relaxed">
+              We are currently in closed beta testing with select pilot partners. Leave your details to get priority onboarding and 3 months of complimentary founder support.
+            </p>
+
+            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link href="/demo" className="w-full sm:w-auto">
+                <Button 
+                  size="lg" 
+                  className="w-full sm:w-auto px-7 py-3 text-xs sm:text-sm bg-[#0B3B24] hover:bg-[#082b1a] text-white font-bold rounded-full shadow-sm cursor-pointer transition-all"
+                >
+                  <Mail className="w-4 h-4 mr-2 text-[#BCE440]" />
+                  <span>Join Early Access Waitlist</span>
+                </Button>
+              </Link>
+              <Link href="/product" className="w-full sm:w-auto">
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="w-full sm:w-auto px-6 py-3 text-xs sm:text-sm border border-stone-300 text-stone-800 hover:bg-stone-50 rounded-full font-bold cursor-pointer transition-all"
+                >
+                  <span>View Live Products</span>
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* 4 Feature Preview Cards */}
+          <div className="mt-16 text-left">
+            <div className="text-center mb-8">
+              <span className="text-[11px] font-bold text-[#008726] uppercase tracking-wider font-mono">
+                ENGINEERING PREVIEW
+              </span>
+              <h2 className="text-2xl font-black text-[#141414] tracking-tight mt-1">
+                Capabilities Being Built
+              </h2>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4">
+              {product.features.map((feat, idx) => (
+                <div key={idx} className="p-5 rounded-2xl bg-white border border-stone-200/90 shadow-2xs space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-lg bg-emerald-50 text-[#008726] text-xs font-bold flex items-center justify-center shrink-0">
+                      {idx + 1}
+                    </span>
+                    <h4 className="font-extrabold text-sm text-[#141414]">{feat.title}</h4>
+                  </div>
+                  <p className="text-xs text-stone-600 leading-relaxed pl-8">
+                    {feat.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Available Now Active Suite Strip */}
+          <div className="mt-16 pt-10 border-t border-stone-200/80">
+            <div className="text-xs font-bold text-stone-500 uppercase tracking-wider font-mono mb-4 text-center">
+              Available Active Modules Ready Today:
+            </div>
+            <div className="flex items-center justify-center gap-3 flex-wrap">
+              <Link href="/product/inventory" className="px-4 py-2 rounded-full bg-white border border-stone-200 hover:border-[#0B3B24] text-xs font-bold text-[#0B3B24] transition-all flex items-center gap-1.5 shadow-2xs">
+                <Boxes className="w-3.5 h-3.5 text-[#008726]" />
+                <span>Inventory &amp; Recipe BOM</span>
+                <ArrowRight className="w-3 h-3 ml-0.5" />
+              </Link>
+              <Link href="/product/expenses" className="px-4 py-2 rounded-full bg-white border border-stone-200 hover:border-[#0B3B24] text-xs font-bold text-[#0B3B24] transition-all flex items-center gap-1.5 shadow-2xs">
+                <Wallet className="w-3.5 h-3.5 text-amber-700" />
+                <span>Expenses Tracker &amp; Cash Flow</span>
+                <ArrowRight className="w-3 h-3 ml-0.5" />
+              </Link>
+              <Link href="/product/dairy" className="px-4 py-2 rounded-full bg-white border border-stone-200 hover:border-[#0B3B24] text-xs font-bold text-[#0B3B24] transition-all flex items-center gap-1.5 shadow-2xs">
+                <Milk className="w-3.5 h-3.5 text-emerald-700" />
+                <span>Precision Dairy ERP</span>
+                <ArrowRight className="w-3 h-3 ml-0.5" />
+              </Link>
+              <Link href="/product/hotel" className="px-4 py-2 rounded-full bg-white border border-stone-200 hover:border-[#0B3B24] text-xs font-bold text-[#0B3B24] transition-all flex items-center gap-1.5 shadow-2xs">
+                <Building2 className="w-3.5 h-3.5 text-purple-700" />
+                <span>Hotel Management PMS</span>
+                <ArrowRight className="w-3 h-3 ml-0.5" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. FOOTER */}
+        <footer className="border-t border-stone-200/80 bg-white py-8 px-4 sm:px-6 lg:px-12 text-center text-xs text-stone-500">
+          <div className="max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <span className="font-extrabold text-[#0B3B24] tracking-tight font-serif italic text-base">Tavola</span>
+              <span>• {product.title} (Launching Soon)</span>
+            </div>
+            <div>
+              &copy; {new Date().getFullYear()} Tavola Operations Platform. All rights reserved.
+            </div>
+            <div className="flex items-center gap-4 text-stone-600 font-medium">
+              <Link href="/product" className="hover:text-[#0B3B24]">All Products</Link>
+              <Link href="/demo" className="hover:text-[#0B3B24]">Request Demo</Link>
+              <Link href="/#faq" className="hover:text-[#0B3B24]">FAQ</Link>
+            </div>
+          </div>
+        </footer>
+      </div>
+    );
+  }
+
+  /* =========================================================================
+      ACTIVE DETAIL VIEW (E.G. FOR HOTEL MANAGEMENT)
+     ========================================================================= */
   return (
     <div className="min-h-screen bg-[#FAF7EE] text-[#141414] font-sans antialiased overflow-x-hidden selection:bg-[#BCE440]/40 selection:text-[#0B3B24]">
       {/* 1. TOP NAVBAR */}
@@ -368,36 +434,33 @@ export default async function ProductDetailPage({
                     <p className="text-[11px] text-stone-500">{product.mockup.subtitle}</p>
                   </div>
                 </div>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#E8EFE9] text-[#0B3B24]">
-                  LIVE SYNC
-                </span>
               </div>
 
-              {/* KPI highlight banner */}
-              <div className="p-4 rounded-2xl bg-[#FAF7EE] border border-[#DDD6C0]/70 flex items-center justify-between">
-                <div>
-                  <div className="text-xs text-stone-500 font-semibold">{product.mockup.metricTitle}</div>
-                  <div className="text-2xl font-black text-[#0B3B24] font-mono mt-0.5">{product.mockup.metricValue}</div>
+              {/* Central Key Stat Card */}
+              <div className="p-4 rounded-2xl bg-[#FAF7EE] border border-[#DDD6C0] space-y-1">
+                <span className="text-[11px] font-bold text-stone-500 uppercase tracking-wider font-mono">
+                  {product.mockup.metricTitle}
+                </span>
+                <div className="text-2xl font-black text-[#0B3B24] font-mono">
+                  {product.mockup.metricValue}
                 </div>
-                <div className="text-xs font-bold text-[#00ab14] bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
+                <div className="text-xs font-semibold text-[#008726]">
                   {product.mockup.metricChange}
                 </div>
               </div>
 
-              {/* Live line items */}
+              {/* Items List */}
               <div className="space-y-2.5">
                 {product.mockup.items.map((item, i) => (
-                  <div key={i} className="p-3 rounded-xl bg-stone-50/70 border border-stone-200/80 flex items-center justify-between gap-2">
-                    <div className="min-w-0">
-                      <div className="text-xs font-bold text-[#141414] truncate">{item.label}</div>
-                      <div className="text-[11px] text-stone-500 truncate">{item.sub}</div>
+                  <div key={i} className="p-3 rounded-xl bg-stone-50 border border-stone-100 flex items-center justify-between gap-3 text-xs">
+                    <div className="space-y-0.5">
+                      <div className="font-bold text-stone-900">{item.label}</div>
+                      <div className="text-[11px] text-stone-500">{item.sub}</div>
                     </div>
-                    <span className={`text-[10px] font-bold px-2.5 py-1 rounded-md shrink-0 whitespace-nowrap ${
-                      item.statusType === 'warning'
-                        ? 'bg-amber-100 text-amber-900 border border-amber-200'
-                        : item.statusType === 'info'
-                        ? 'bg-blue-100 text-blue-900 border border-blue-200'
-                        : 'bg-emerald-100 text-emerald-900 border border-emerald-200'
+                    <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold shrink-0 ${
+                      item.statusType === 'success' ? 'bg-emerald-100 text-[#008726]' :
+                      item.statusType === 'warning' ? 'bg-amber-100 text-amber-800' :
+                      'bg-blue-100 text-blue-700'
                     }`}>
                       {item.status}
                     </span>
@@ -405,58 +468,48 @@ export default async function ProductDetailPage({
                 ))}
               </div>
 
-              <div className="pt-2">
-                <Link href="/login" className="block">
-                  <button className="w-full py-2.5 rounded-xl bg-[#0B3B24] hover:bg-[#082b1a] text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer">
-                    <span>Open Live Interactive Sandbox</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-[#BCE440]" />
-                  </button>
-                </Link>
-              </div>
-
             </div>
           </div>
 
         </div>
-
       </section>
 
-      {/* 3. CORE CAPABILITIES GRID */}
-      <section className="relative z-10 py-16 bg-[#F5F0E1] border-y border-[#E5DEC9]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-xs uppercase font-extrabold tracking-widest text-[#0B3B24] mb-2">
-              ENGINEERED FOR EFFICIENCY
-            </h2>
-            <p className="text-3xl sm:text-4xl font-black text-[#141414] tracking-tight">
-              Key Features Built for Real Operations
-            </p>
-          </div>
+      {/* 3. CORE VALUE PROPOSITION GRID */}
+      <section className="relative z-10 py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#E5DEC9]">
+        <div className="max-w-3xl mb-12">
+          <span className="text-xs font-extrabold uppercase tracking-widest text-[#008726] font-mono">
+            ENGINEERED FOR SCALE
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-black text-[#141414] tracking-tight mt-1">
+            Built for High-Growth Multi-Outlet Operations
+          </h2>
+          <p className="mt-2 text-[#555555] text-base leading-relaxed">
+            Eliminate operational bottlenecks, streamline communication between staff, and maintain audit-proof records across all branches.
+          </p>
+        </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {product.features.map((feat, i) => (
-              <div key={i} className="p-6 rounded-2xl bg-white border border-[#E5DEC9] shadow-xs space-y-3">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-[#FAF7EE] text-[#0B3B24] flex items-center justify-center border border-[#DDD6C0] shrink-0 mt-0.5">
-                    <CheckCircle2 className="w-4 h-4 text-[#00ab14]" />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-bold text-[#141414]">{feat.title}</h3>
-                    <p className="text-xs sm:text-sm text-[#555555] leading-relaxed mt-1">
-                      {feat.desc}
-                    </p>
-                  </div>
-                </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {product.features.map((feat, i) => (
+            <div 
+              key={i} 
+              className="p-8 rounded-3xl bg-white border border-[#E5DEC9] shadow-xs hover:border-[#0B3B24]/40 hover:shadow-md transition-all duration-200 space-y-3"
+            >
+              <div className="w-10 h-10 rounded-2xl bg-[#E8EFE9] text-[#0B3B24] flex items-center justify-center font-bold text-sm">
+                0{i + 1}
               </div>
-            ))}
-          </div>
-
+              <h3 className="text-xl font-bold text-[#141414] tracking-tight">
+                {feat.title}
+              </h3>
+              <p className="text-sm text-[#555555] leading-relaxed">
+                {feat.desc}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* 4. OTHER SUITE MODULES NAVIGATION */}
-      <section className="relative z-10 py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <section className="relative z-10 py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#E5DEC9]">
         <div className="text-center mb-10">
           <h3 className="text-xs uppercase font-extrabold tracking-widest text-[#0B3B24] mb-1">
             EXPLORE THE FULL SUITE
@@ -467,27 +520,47 @@ export default async function ProductDetailPage({
         </div>
 
         <div className="grid sm:grid-cols-3 gap-5">
-          {Object.values(PRODUCTS_DATA)
-            .filter((p) => p.slug !== slug)
-            .map((other) => (
-              <Link 
-                key={other.slug} 
-                href={`/product/${other.slug}`}
-                className="group p-5 rounded-2xl bg-white border border-[#E5DEC9] hover:border-[#0B3B24]/40 hover:shadow-md transition-all duration-200 block"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <div className="w-9 h-9 rounded-xl bg-[#FAF7EE] border border-[#DDD6C0] flex items-center justify-center text-[#0B3B24] group-hover:bg-[#0B3B24] group-hover:text-[#BCE440] transition-colors">
-                    {other.slug === 'inventory' && <Boxes className="w-4 h-4" />}
-                    {other.slug === 'expenses' && <Wallet className="w-4 h-4" />}
-                    {other.slug === 'gym' && <Dumbbell className="w-4 h-4" />}
-                    {other.slug === 'dairy' && <Milk className="w-4 h-4" />}
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-[#0B3B24] group-hover:translate-x-1 transition-all" />
-                </div>
-                <h4 className="font-bold text-sm text-[#141414] group-hover:text-[#0B3B24] transition-colors">{other.title}</h4>
-                <p className="text-xs text-stone-500 line-clamp-2 mt-1">{other.tagline}</p>
-              </Link>
-            ))}
+          <Link 
+            href="/product/inventory" 
+            className="group p-5 rounded-2xl bg-white border border-[#E5DEC9] hover:border-[#0B3B24]/40 hover:shadow-md transition-all duration-200 block"
+          >
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-9 h-9 rounded-xl bg-[#FAF7EE] border border-[#DDD6C0] flex items-center justify-center text-[#0B3B24] group-hover:bg-[#0B3B24] group-hover:text-[#BCE440] transition-colors">
+                <Boxes className="w-4 h-4" />
+              </div>
+              <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-[#0B3B24] group-hover:translate-x-1 transition-all" />
+            </div>
+            <h4 className="font-bold text-sm text-[#141414] group-hover:text-[#0B3B24] transition-colors">Smart Inventory Management</h4>
+            <p className="text-xs text-stone-500 line-clamp-2 mt-1">Track every gram, eliminate kitchen wastage, and automate supplier orders.</p>
+          </Link>
+
+          <Link 
+            href="/product/expenses" 
+            className="group p-5 rounded-2xl bg-white border border-[#E5DEC9] hover:border-[#0B3B24]/40 hover:shadow-md transition-all duration-200 block"
+          >
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-9 h-9 rounded-xl bg-[#FAF7EE] border border-[#DDD6C0] flex items-center justify-center text-[#0B3B24] group-hover:bg-[#0B3B24] group-hover:text-[#BCE440] transition-colors">
+                <Wallet className="w-4 h-4" />
+              </div>
+              <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-[#0B3B24] group-hover:translate-x-1 transition-all" />
+            </div>
+            <h4 className="font-bold text-sm text-[#141414] group-hover:text-[#0B3B24] transition-colors">Expenses &amp; Cash Flow</h4>
+            <p className="text-xs text-stone-500 line-clamp-2 mt-1">Direct expenses, daily reconciliation, petty cash slips &amp; live net profit margins.</p>
+          </Link>
+
+          <Link 
+            href="/product/dairy" 
+            className="group p-5 rounded-2xl bg-white border border-[#E5DEC9] hover:border-[#0B3B24]/40 hover:shadow-md transition-all duration-200 block"
+          >
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-9 h-9 rounded-xl bg-[#FAF7EE] border border-[#DDD6C0] flex items-center justify-center text-[#0B3B24] group-hover:bg-[#0B3B24] group-hover:text-[#BCE440] transition-colors">
+                <Milk className="w-4 h-4" />
+              </div>
+              <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-[#0B3B24] group-hover:translate-x-1 transition-all" />
+            </div>
+            <h4 className="font-bold text-sm text-[#141414] group-hover:text-[#0B3B24] transition-colors">Precision Dairy ERP</h4>
+            <p className="text-xs text-stone-500 line-clamp-2 mt-1">Manufacturing batches, milk fat/SNF collection, cold chain &amp; van delivery.</p>
+          </Link>
         </div>
       </section>
 

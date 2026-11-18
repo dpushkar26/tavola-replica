@@ -732,9 +732,19 @@ export default function ProductPage() {
               tag: 'Fitness Operations',
               desc: 'Biometric turnstile check-ins, WhatsApp renewal reminders, class booking & trainer slots.',
               href: '/product/gym',
-              badge: 'New',
-              badgeColor: 'bg-blue-100 text-blue-900 border-blue-200',
+              badge: 'Coming Soon',
+              badgeColor: 'bg-amber-100 text-amber-900 border-amber-300',
               icon: Dumbbell
+            },
+            {
+              id: 'school',
+              title: 'School ERP System',
+              tag: 'Education Campus',
+              desc: 'Student admissions, digital fee collection with instant UPI, RFID gate attendance & parent app.',
+              href: '/product/school',
+              badge: 'Coming Soon',
+              badgeColor: 'bg-amber-100 text-amber-900 border-amber-300',
+              icon: GraduationCap
             },
           ].map((item) => {
             const Icon = item.icon;

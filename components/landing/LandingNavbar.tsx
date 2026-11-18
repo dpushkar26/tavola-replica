@@ -55,8 +55,8 @@ export const SUB_PRODUCTS = [
     title: 'Gym Management',
     desc: 'Member subscriptions, biometric turnstiles, attendance tracking & trainer slots.',
     href: '/product/gym',
-    badge: 'NEW',
-    badgeColor: 'bg-[#D1E9FF] text-[#175CD3] border-blue-200/60',
+    badge: 'COMING SOON',
+    badgeColor: 'bg-amber-100 text-amber-900 border-amber-300',
   },
   {
     id: 'dairy',
@@ -71,8 +71,8 @@ export const SUB_PRODUCTS = [
     title: 'School ERP System',
     desc: 'Student admissions, fee collection, attendance biometrics & parent portal.',
     href: '/product/school',
-    badge: 'UPCOMING',
-    badgeColor: 'bg-[#FFE4E8] text-[#C11574] border-rose-200/60',
+    badge: 'COMING SOON',
+    badgeColor: 'bg-amber-100 text-amber-900 border-amber-300',
   },
 ];
 
