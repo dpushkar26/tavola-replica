@@ -162,25 +162,16 @@ export function LandingNavbar({ user = null }: { user?: any }) {
               {/* Desktop Sub Nav Drawer Flyout */}
               {productsDropdownOpen && (
                 <div 
-                  className="absolute left-0 top-[calc(100%+6px)] w-[680px] max-w-[92vw] rounded-2xl bg-[#FCFAF6] border border-stone-200/90 shadow-[0_20px_50px_-10px_rgba(11,59,36,0.12),0_4px_12px_rgba(0,0,0,0.04)] p-5 z-50 animate-in fade-in slide-in-from-top-1 duration-150 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3"
+                  className="absolute left-0 top-[calc(100%+6px)] w-[680px] max-w-[92vw] rounded-2xl bg-[#FCFAF6] border border-stone-200/90 shadow-[0_20px_50px_-10px_rgba(11,59,36,0.12),0_4px_12px_rgba(0,0,0,0.04)] p-4.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
                   {/* Drawer Header */}
-                  <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-stone-200/80">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#00ab14]"></span>
-                      <span className="text-[11px] font-bold tracking-wider text-[#0B3B24] uppercase font-sans">
-                        TAVOLA OPERATIONS SUITE
-                      </span>
-                    </div>
-                    <Link 
-                      href="/product" 
-                      className="text-xs font-semibold text-[#141414] hover:text-[#0B3B24] flex items-center gap-1 group transition-colors"
-                    >
-                      <span>View All Products</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                    </Link>
+                  <div className="flex items-center gap-2 pb-3 mb-3 border-b border-stone-200/80">
+                    <span className="w-2 h-2 rounded-full bg-[#00ab14]"></span>
+                    <span className="text-[11px] font-bold tracking-wider text-[#0B3B24] uppercase font-sans">
+                      TAVOLA OPERATIONS SUITE
+                    </span>
                   </div>
 
                   {/* Sub Nav Items 2x2 Grid */}
@@ -217,18 +208,6 @@ export function LandingNavbar({ user = null }: { user?: any }) {
                         </Link>
                       );
                     })}
-                  </div>
-
-                  {/* Drawer Footer Banner */}
-                  <div className="mt-4 pt-3.5 border-t border-stone-200/80 flex items-center justify-between text-xs text-stone-600">
-                    <span className="flex items-center gap-1.5 text-stone-600 font-medium text-[12px]">
-                      <Sparkles className="w-3.5 h-3.5 text-[#00ab14]" />
-                      Zero hardware lock-in • 7-day free trial on all modules
-                    </span>
-                    <Link href="/demo" className="text-[#0B3B24] font-semibold hover:underline flex items-center gap-1 group text-[12px]">
-                      <span>Schedule 1-on-1 Walkthrough</span>
-                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                    </Link>
                   </div>
 
                 </div>
@@ -374,16 +353,6 @@ export function LandingNavbar({ user = null }: { user?: any }) {
                             </Link>
                           );
                         })}
-
-                        {/* All Products link in sub drawer */}
-                        <Link
-                          href="/product"
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between p-2 rounded-lg text-[11px] font-bold text-[#0B3B24] hover:bg-white/80 transition-colors mt-1"
-                        >
-                          <span>Explore All Products Overview</span>
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </Link>
                       </div>
                     )}
                   </div>
