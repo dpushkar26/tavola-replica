@@ -23,99 +23,158 @@ import {
   ArrowUpRight,
   PlusCircle,
   FileCheck2,
-  Scale
+  Scale,
+  RefreshCw,
+  Upload,
+  Search,
+  Check,
+  Clock,
+  Layers,
+  Users2,
+  ArrowDownRight,
+  Send,
+  Eye
 } from 'lucide-react';
 import { LandingNavbar } from '@/components/landing/LandingNavbar';
 
-type ExpenseCapabilityKey = 'petty_cash' | 'vendor_ap' | 'staff_advances' | 'pnl_reports';
+type PlatformModuleKey = 
+  | 'direct_expenses' 
+  | 'purchase_bills' 
+  | 'payment_out' 
+  | 'daily_reconciliation' 
+  | 'parties_ledger' 
+  | 'customer_khata';
 
-interface ExpenseCapabilityMeta {
-  key: ExpenseCapabilityKey;
+interface PlatformModuleMeta {
+  key: PlatformModuleKey;
   label: string;
+  sub: string;
   badge: string;
-  icon: typeof Wallet;
   title: string;
+  subtitle: string;
   description: string;
   kpis: { label: string; value: string; hint: string }[];
-  steps: string[];
+  workflow: string[];
 }
 
-const EXPENSE_CAPABILITIES: ExpenseCapabilityMeta[] = [
+const PLATFORM_MODULES: PlatformModuleMeta[] = [
   {
-    key: 'petty_cash',
-    label: 'Petty Cash Wallet',
-    badge: 'MOBILE OCR',
-    icon: Wallet,
-    title: 'Mobile Cash Outflows & Instant Slip Capture',
-    description: 'Empower floor and kitchen managers to log market vegetable runs, ice deliveries, and emergency repairs on smartphone cameras with instant cash drawer balance updates.',
+    key: 'direct_expenses',
+    label: 'Direct Expenses',
+    sub: 'Petty Cash & Vouchers',
+    badge: 'PETTY CASH',
+    title: 'Operating Expenses & Daily Cash Vouchers',
+    subtitle: 'Track operating expenses, chai, fuel, rents and utility vouchers',
+    description: 'Capture day-to-day cash outflows instantly. Record kitchen market runs, commercial cylinder refills, and cleaning supplies with attached receipt photos and instant drawer float deductions.',
     kpis: [
-      { label: 'RECEIPT LOGGING', value: '< 5 Seconds', hint: 'Camera snap with AI OCR total extraction' },
-      { label: 'DRAWER VARIANCE', value: '₹0.00', hint: 'Opening float to closing count reconciliation' },
-      { label: 'APPROVAL CONTROL', value: 'Role-Based', hint: 'Manager sign-off for expenses > ₹1,000' },
+      { label: 'OPERATING OUTFLOW', value: '₹4,850.00', hint: 'Petty Cash + Vendor Procurement' },
+      { label: 'DIRECT / INDIRECT', value: '₹3,100 / ₹1,750', hint: 'Operational vs Overhead Split' },
+      { label: 'RECORD SPEED', value: '< 5 Seconds', hint: 'Camera upload & auto-categorization' },
     ],
-    steps: [
-      'Floor manager snaps photo of physical vendor receipt or handwritten voucher',
-      'Selects expense category (Market Purchases, Gas & Utilities, Repairs, Delivery)',
-      'Cash drawer ledger balance auto-deducts with timestamped supervisor verification',
+    workflow: [
+      'Floor manager taps "+ Add Expense" and snaps receipt photo or handwritten slip',
+      'Assigns category (Cleaning & Supplies, Electricity, Market Purchases, Chai/Fuel)',
+      'Cash drawer ledger balance auto-deducts with timestamped supervisor sign-off',
     ],
   },
   {
-    key: 'vendor_ap',
-    label: 'Vendor Credit & AP',
-    badge: 'PAYMENT RADAR',
-    icon: Receipt,
-    title: 'Supplier Payables & Credit Term Schedules',
-    description: 'Track outstanding distributor balances, 7/15/30-day credit cycles, and early-payment discounts. Generate verified payment vouchers directly on WhatsApp.',
+    key: 'daily_reconciliation',
+    label: 'Daily Reconciliation',
+    sub: 'Cashier vs POS & Bank UTR',
+    badge: 'AUDIT MATRIX',
+    title: 'Daily Payment & Cashier Reconciliation',
+    subtitle: 'End-of-day verification: Cashier drawer counts vs POS database collections vs Bank/UPI gateway statements',
+    description: 'Eliminate midnight cash shortages and uncollected QR orders. Cross-reference physical drawer cash against live POS database totals and bank settlement statements down to the exact rupee.',
     kpis: [
-      { label: 'DISPUTE REDUCTION', value: '100%', hint: 'Matched against logged purchase bills' },
-      { label: 'EARLY DISCOUNT', value: '2% - 5%', hint: 'Capture cash discounts on early settlements' },
-      { label: 'PAYMENT MODES', value: 'UPI / NEFT / Cash', hint: 'Multi-mode payment recording with UTR' },
+      { label: 'RECORDED INFLOW', value: '₹2,264.00', hint: 'Live POS collections (Cash + UPI)' },
+      { label: 'DRAWER VARIANCE', value: '₹0.00 Match', hint: 'Physical cash declared vs database' },
+      { label: 'TRANSACTION AUDIT', value: '14 Logged', hint: 'Time-stamped match audit trail' },
     ],
-    steps: [
-      'Log supplier purchase invoices with due dates and payment discount windows',
-      'View daily aging calendar of upcoming distributor payments to manage liquidity',
-      'Record settlements with UTR reference numbers and auto-send WhatsApp payment confirmation',
+    workflow: [
+      'Cashier counts drawer notes and enters physical cash total at shift handover',
+      'System compares Cash (₹1,406) + UPI (₹858) against POS order database',
+      'Highlights any uncollected QR orders or cash shortages before shift close',
     ],
   },
   {
-    key: 'staff_advances',
-    label: 'Staff Advances & Tips',
-    badge: 'AUTO-DEDUCT',
-    icon: CreditCard,
-    title: 'Employee Advances, Shift Payouts & Tip Pooling',
-    description: 'Stop unrecorded loans and payroll confusion. Track staff salary advances, daily commis cash allowances, and digital tip distributions with automated payroll deductions.',
+    key: 'purchase_bills',
+    label: 'Purchase Bills',
+    sub: 'Vendor Invoices & Dues',
+    badge: 'INVOICE DUES',
+    title: 'Supplier Purchase Invoices & Credit Cycles',
+    subtitle: 'Track incoming distributor bills, payment due dates, and eligible GST Input Tax Credits',
+    description: 'Never lose a supplier bill or incur distributor late fees. Log procurement invoices, monitor 7/15/30-day payment windows, and protect gross margins with itemized purchase rate verifications.',
     kpis: [
-      { label: 'ADVANCE RECOVERY', value: '100% Automated', hint: 'Auto-deducted from month-end salary' },
-      { label: 'TIP POOLING', value: 'Custom Roster', hint: 'Transparent front/back-of-house split' },
-      { label: 'DIGITAL SIGN-OFF', value: 'Instant OTP', hint: 'SMS/WhatsApp voucher confirmation' },
+      { label: 'PENDING INVOICES', value: '₹24,800.00', hint: 'Metro Dairy & FreshVeg Invoices' },
+      { label: 'EARLY DISCOUNT', value: 'Save 2%', hint: 'Early settlement discount radar' },
+      { label: 'GST MATCHING', value: '100% GSTR-2B', hint: 'ITC tax credit verification' },
     ],
-    steps: [
-      'Record cash advance request with staff PIN or OTP confirmation',
-      'System auto-generates digital voucher and locks against employee salary ledger',
-      'Distribute daily card/UPI tips equitably based on hours clocked during shift',
+    workflow: [
+      'Inward raw items with supplier invoice number, date, and credit cycle terms',
+      'Automatic payment reminder sent to manager 2 days prior to invoice due date',
+      'One-click export of verified purchase ledgers for your chartered accountant',
     ],
   },
   {
-    key: 'pnl_reports',
-    label: 'Live P&L & Tax',
-    badge: 'REAL-TIME MARGIN',
-    icon: PieChart,
-    title: 'Continuous Daily Profit & Loss Ledger',
-    description: 'Know your exact restaurant net profit before turning off the kitchen lights. Prime costs, petty outflows, and revenue reconcile continuously into actionable P&L statements.',
+    key: 'payment_out',
+    label: 'Payment-Out',
+    sub: 'Supplier Settlements',
+    badge: 'SETTLEMENTS',
+    title: 'Supplier Settlements & Payment Vouchers',
+    subtitle: 'Generate formal payment vouchers with bank UTRs and instant WhatsApp receipts',
+    description: 'Settle distributor accounts seamlessly via UPI, NEFT, or Cash. Generate formal branded payment vouchers with transaction UTR numbers and share instant payment confirmations directly to vendors.',
     kpis: [
-      { label: 'FOOD COST (FC%)', value: 'Live 28.5%', hint: 'Tracked continuously against gross sales' },
-      { label: 'GST MATCHING', value: 'GSTR-2B Ready', hint: '100% Input Tax Credit verification' },
-      { label: 'TALLY SYNC', value: '1-Click XML', hint: 'Direct export for chartered accountants' },
+      { label: 'SETTLED THIS WEEK', value: '₹68,450.00', hint: 'Paid across 8 verified suppliers' },
+      { label: 'PAYMENT MODES', value: 'UPI / NEFT / Cash', hint: 'Complete banking reference tracking' },
+      { label: 'DISPUTE RATE', value: '0.0%', hint: 'Zero supplier payment discrepancies' },
     ],
-    steps: [
-      'Aggregates all POS dine-in, takeaway, and delivery sales into gross revenue',
-      'Deducts real-time BOM ingredient consumption, petty cash expenses, and labor',
-      'Displays live gross margin, prime cost percentage, and daily net take-home profit',
+    workflow: [
+      'Select vendor and outstanding bills to settle from the aging schedule',
+      'Enter bank UTR / cheque number or scan supplier UPI QR code',
+      'Generate stamped payment voucher and dispatch WhatsApp confirmation PDF',
+    ],
+  },
+  {
+    key: 'parties_ledger',
+    label: 'Parties Ledger',
+    sub: 'Vendors & Customers',
+    badge: 'PARTY MASTER',
+    title: 'Consolidated Vendor & Customer Ledgers',
+    subtitle: 'Complete financial statement and transaction history for every business counterparty',
+    description: 'Review historical transaction statements for all raw material distributors, utility suppliers, and corporate customer accounts. Maintain complete transparency across debit and credit entries.',
+    kpis: [
+      { label: 'ACTIVE PARTIES', value: '42 Vendors', hint: 'Pantry, dairy, produce & utilities' },
+      { label: 'STATEMENT EXPORT', value: 'PDF / Excel', hint: 'Full itemized historical ledger' },
+      { label: 'BALANCE AUDIT', value: 'Real-Time', hint: 'Continuous balance recalculation' },
+    ],
+    workflow: [
+      'Search vendor by name, GSTIN, phone number, or supplier category',
+      'Inspect detailed debit/credit history with linked invoice and voucher numbers',
+      'Download formal vendor statement for year-end audit reconciliations',
+    ],
+  },
+  {
+    key: 'customer_khata',
+    label: 'Customer Pay Later',
+    sub: 'Khata Dues & Collection',
+    badge: 'KHATA RECOVERY',
+    title: 'Customer Khata & Pay Later Accounts',
+    subtitle: 'Credit dining accounts, corporate employee folios, and automated WhatsApp payment links',
+    description: 'Delight VIP regular guests and corporate cafeteria accounts with trusted pay-later privileges. Send polite automated WhatsApp payment reminders with instant 1-click UPI collection links.',
+    kpis: [
+      { label: 'KHATA RECEIVABLES', value: '₹12,450.00', hint: 'Active corporate & VIP guest folios' },
+      { label: 'COLLECTION RATE', value: '96.8%', hint: 'On-time settlement via UPI links' },
+      { label: 'RECOVERY SPEED', value: 'Avg 3 Days', hint: 'Polite automated WhatsApp nudges' },
+    ],
+    workflow: [
+      'Tag diner order folio as "Customer Pay Later" upon bill settlement at POS',
+      'System auto-generates digital customer ledger with date, time, and item summary',
+      'Automated WhatsApp payment link sent on due date for 1-click UPI payment',
     ],
   },
 ];
 
-const EXPENSE_SPECS = [
+const TECHNICAL_SPECIFICATIONS = [
   {
     title: 'Cash & Petty Outflows',
     specs: [
@@ -126,7 +185,16 @@ const EXPENSE_SPECS = [
     ],
   },
   {
-    title: 'Vendor Payables (AP)',
+    title: 'Payment & Bank Reconciliation',
+    specs: [
+      { name: 'Matrix Channels', detail: 'Cash Drawer, UPI / QR settlements (PhonePe, Paytm, GPay), and Card / EDC swipe machines' },
+      { name: 'Discrepancy Engine', detail: 'Real-time mathematical variance tracking between physical cashier count and POS database' },
+      { name: 'Transaction Trail', detail: 'Individual timestamped log with payment method, system source, amount, and UTR reference' },
+      { name: 'Shift Handovers', detail: 'Day-end and shift-end closing drawer verification with electronic manager sign-off' },
+    ],
+  },
+  {
+    title: 'Vendor Accounts Payable (AP)',
     specs: [
       { name: 'Credit Term Tracking', detail: 'Configurable vendor payment terms (COD, 7 days, 15 days, 30 days, 45 days)' },
       { name: 'Aging Reports', detail: '0-7 days, 8-15 days, 16-30 days, and 30+ days overdue supplier balance buckets' },
@@ -135,28 +203,19 @@ const EXPENSE_SPECS = [
     ],
   },
   {
-    title: 'P&L & Financial Metrics',
+    title: 'Customer Khata & Accounting Sync',
     specs: [
-      { name: 'Prime Cost Calculation', detail: 'Continuous formula: Raw Food Cost + Kitchen Direct Labor / Total Food & Beverage Revenue' },
-      { name: 'Operating Margins', detail: 'Tracks EBITDA, Gross Profit Margin, Net Operating Margin, and Controllable Expenses' },
-      { name: 'GST Input Tax Credit', detail: 'Captures vendor GSTIN, invoice date, HSN breakdown, and eligible CGST/SGST/IGST credits' },
-      { name: 'Cash Reconciliation', detail: 'Daily physical cash collected vs POS system expected cash with audit variance tracker' },
-    ],
-  },
-  {
-    title: 'Software & Accounting Sync',
-    specs: [
+      { name: 'Khata Credit Limits', detail: 'Custom credit balance ceilings per corporate guest with automated lockout on limit breach' },
       { name: 'Accounting Compatibility', detail: 'Native XML and Excel format exports optimized for Tally Prime, Zoho Books, and SAP' },
-      { name: 'Multi-Outlet Consolidation', detail: 'Compare prime costs and expense ratios across multiple chain branches in one dashboard' },
+      { name: 'GST Input Tax Credit', detail: 'Captures vendor GSTIN, invoice date, HSN breakdown, and eligible CGST/SGST/IGST credits' },
       { name: 'Cloud Audit Trail', detail: 'Immutable financial logs with user identity, edit histories, and tamper-resistant timestamps' },
-      { name: 'Data Security', detail: 'Bank-grade 256-bit TLS encryption with daily off-site cloud financial backups' },
     ],
   },
 ];
 
 export default function ExpensesProductPage() {
-  const [activeCapability, setActiveCapability] = useState<ExpenseCapabilityKey>('petty_cash');
-  const currentCapability = EXPENSE_CAPABILITIES.find(c => c.key === activeCapability) || EXPENSE_CAPABILITIES[0];
+  const [activeModule, setActiveModule] = useState<PlatformModuleKey>('daily_reconciliation');
+  const currentModule = PLATFORM_MODULES.find(m => m.key === activeModule) || PLATFORM_MODULES[0];
 
   return (
     <div className="min-h-screen bg-[#FBFBF9] text-[#141414] font-sans antialiased selection:bg-[#BCE440]/40 selection:text-[#0B3B24] overflow-x-hidden">
@@ -182,7 +241,7 @@ export default function ExpensesProductPage() {
         </div>
       </div>
 
-      {/* 3. Refined Editorial Hero Section */}
+      {/* 3. Hero Section */}
       <section className="pt-8 sm:pt-12 pb-8 sm:pb-12 px-3.5 xs:px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto">
         <div className="max-w-3xl">
           
@@ -192,11 +251,11 @@ export default function ExpensesProductPage() {
           </div>
 
           <h1 className="text-3xl xs:text-4xl sm:text-5xl font-black text-[#141414] tracking-[-0.03em] leading-[1.12]">
-            Automated Restaurant Expenses &amp; Cash Flow Tracker
+            Direct Expenses, Daily Reconciliation &amp; Vendor Cash Flow
           </h1>
 
           <p className="mt-3 sm:mt-4 text-xs xs:text-sm sm:text-base text-stone-600 leading-relaxed max-w-2xl font-normal">
-            Stop guessing your month-end P&amp;L. Capture mobile petty cash slips, track bulk vendor credit schedules, prevent cash drawer leakage, and calculate your true food cost percentage in real-time.
+            Track daily operating petty cash vouchers, verify end-of-day cashier drawer counts against POS database and bank settlements, and manage supplier purchase credit cycles with zero financial leakage.
           </p>
 
           {/* Action CTAs */}
@@ -211,12 +270,12 @@ export default function ExpensesProductPage() {
               </button>
             </Link>
 
-            <a href="#features" className="w-full xs:w-auto">
+            <a href="#platform-preview" className="w-full xs:w-auto">
               <button 
                 type="button"
                 className="w-full xs:w-auto px-5 py-3 rounded-full border border-stone-300 bg-white hover:bg-stone-50 text-stone-800 text-xs sm:text-[13px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1.5 touch-manipulation active:scale-[0.98]"
               >
-                <span>Explore Capabilities</span>
+                <span>Explore Live Platform</span>
                 <ChevronRight className="w-3.5 h-3.5 text-stone-400" />
               </button>
             </a>
@@ -228,7 +287,7 @@ export default function ExpensesProductPage() {
         <div className="mt-10 sm:mt-12 pt-6 border-t border-stone-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-stone-500">
           <div className="font-semibold text-stone-700 tracking-tight flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#008726]"></span>
-            <span>Managing daily restaurant finances across 10,000+ busy food brands:</span>
+            <span>Reconciling daily cash &amp; vendor payouts across 10,000+ restaurant outlets:</span>
           </div>
           <div className="flex items-center gap-4 sm:gap-6 text-stone-600 font-bold overflow-x-auto no-scrollbar whitespace-nowrap text-xs">
             <span className="hover:text-stone-900 transition-colors">The Rustic Spatula</span>
@@ -245,10 +304,10 @@ export default function ExpensesProductPage() {
       </section>
 
       {/* =========================================================================
-          4. REFINED ALTERNATING FEATURE DEMONSTRATIONS (Editorial Showcase)
-             - Feature 1: Mobile Petty Cash Slips in 5 Seconds
-             - Feature 2: Vendor Credit & Payables Schedule
-             - Feature 3: Real-Time Daily P&L & Food Cost (FC%)
+          4. REFINED ALTERNATING FEATURE SHOWCASES (Direct Platform Realities)
+             - Showcase 1: Direct Expenses & Operating Petty Cash Vouchers (Image 3)
+             - Showcase 2: Daily Payment Reconciliation & Audit Matrix (Image 1 & 2)
+             - Showcase 3: Purchase Bills, Supplier Settlements & Customer Khata
          ========================================================================= */}
       <section id="features" className="py-12 sm:py-16 px-3.5 xs:px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto space-y-16 sm:space-y-24 border-t border-stone-200/80 scroll-mt-12">
         
@@ -258,59 +317,85 @@ export default function ExpensesProductPage() {
             FINANCIAL INTELLIGENCE
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#141414] tracking-tight mt-1.5">
-            Total control over cash outflows &amp; vendor bills
+            Total control over cash drawers, vendor dues &amp; bank settlements
           </h2>
           <p className="mt-2 text-xs sm:text-sm text-stone-600 max-w-xl mx-auto leading-relaxed">
-            Eliminate unrecorded cash leaks, dispute supplier invoices with proof, and monitor daily food cost percentages before month-end surprise.
+            Eliminate unrecorded cash leaks, reconcile cashier counts against bank gateway UTRs, and track distributor credit schedules with audit precision.
           </p>
         </div>
 
-        {/* Feature 1: Mobile Petty Cash Slips */}
+        {/* Showcase 1: Direct Expenses & Operating Petty Cash (Reflecting Image 3) */}
         <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Left: UI Card Mockup */}
           <div className="lg:col-span-6 order-2 lg:order-1">
-            <div className="rounded-3xl bg-[#0B3B24] p-5 sm:p-7 shadow-xl border border-emerald-700/50 relative overflow-hidden">
+            <div className="rounded-3xl bg-[#0B3B24] p-4 sm:p-6 shadow-xl border border-emerald-700/50 relative overflow-hidden">
               <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-stone-200/90 space-y-3">
+                
+                {/* Header */}
                 <div className="flex items-center justify-between pb-2.5 border-b border-stone-200">
-                  <span className="font-bold text-xs text-stone-900 flex items-center gap-1.5">
-                    <Receipt className="w-3.5 h-3.5 text-[#008726]" /> Petty Cash Outflow • Slip #PC-1082
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-lg bg-emerald-50 text-[#008726] flex items-center justify-center">
+                      <Receipt className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="font-extrabold text-xs text-stone-900">Expenses &amp; Petty Cash</div>
+                      <div className="text-[10px] text-stone-500">Track chai, fuel, rents and utility vouchers</div>
+                    </div>
+                  </div>
                   <span className="px-2 py-0.5 rounded bg-emerald-50 text-[#008726] text-[10px] font-bold border border-emerald-200">
-                    Verified &amp; Deducted
+                    Active Ledger
                   </span>
                 </div>
 
+                {/* 4 Mini KPI Cards (from Screenshot 3) */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+                  <div className="p-2 rounded-xl bg-stone-50 border border-stone-100">
+                    <span className="text-[9px] font-bold text-stone-500 uppercase block font-mono">TOTAL OUTFLOW</span>
+                    <span className="font-mono font-bold text-stone-900 text-xs mt-0.5 block">₹4,850.00</span>
+                  </div>
+                  <div className="p-2 rounded-xl bg-stone-50 border border-stone-100">
+                    <span className="text-[9px] font-bold text-stone-500 uppercase block font-mono">VENDOR DUES</span>
+                    <span className="font-mono font-bold text-stone-900 text-xs mt-0.5 block">₹2,400.00</span>
+                  </div>
+                  <div className="p-2 rounded-xl bg-stone-50 border border-stone-100">
+                    <span className="text-[9px] font-bold text-stone-500 uppercase block font-mono">DIRECT/INDIRECT</span>
+                    <span className="font-mono font-bold text-[#008726] text-xs mt-0.5 block">₹3,100 / ₹1,750</span>
+                  </div>
+                  <div className="p-2 rounded-xl bg-stone-50 border border-stone-100">
+                    <span className="text-[9px] font-bold text-stone-500 uppercase block font-mono">CASH OUTFLOW</span>
+                    <span className="font-mono font-bold text-purple-700 text-xs mt-0.5 block">₹2,450.00</span>
+                  </div>
+                </div>
+
+                {/* Split Category Preview */}
                 <div className="space-y-1.5 text-xs">
                   <div className="flex justify-between items-center p-2 rounded-xl bg-stone-50 border border-stone-100">
                     <div>
-                      <span className="font-semibold text-stone-800 block">Commercial LPG Cylinder Refill</span>
-                      <span className="text-[10.5px] text-stone-500 font-mono">Kitchen Utility • Approved by GM</span>
+                      <span className="font-semibold text-stone-800 block text-[11.5px]">Cleaning &amp; Supplies</span>
+                      <span className="text-[10px] text-stone-500 font-mono">DIRECT EXPENSE • Floor detergent &amp; wipes</span>
                     </div>
-                    <span className="font-mono font-bold text-stone-900 text-sm">₹2,150.00</span>
+                    <span className="font-mono font-bold text-stone-900">₹850.00</span>
                   </div>
                   <div className="flex justify-between items-center p-2 rounded-xl bg-stone-50 border border-stone-100">
                     <div>
-                      <span className="font-semibold text-stone-800 block">Ice Block (40 kg) Morning Supply</span>
-                      <span className="text-[10.5px] text-stone-500 font-mono">Bar &amp; Pantry Consumable</span>
+                      <span className="font-semibold text-stone-800 block text-[11.5px]">Electricity &amp; Kitchen LPG</span>
+                      <span className="text-[10px] text-stone-500 font-mono">INDIRECT EXPENSE • Commercial cylinder</span>
                     </div>
-                    <span className="font-mono font-bold text-stone-900 text-sm">₹400.00</span>
+                    <span className="font-mono font-bold text-stone-900">₹2,250.00</span>
+                  </div>
+                  <div className="flex justify-between items-center p-2 rounded-xl bg-stone-50 border border-stone-100">
+                    <div>
+                      <span className="font-semibold text-stone-800 block text-[11.5px]">Daily Chai &amp; Shift Fuel</span>
+                      <span className="text-[10px] text-stone-500 font-mono">DIRECT EXPENSE • Staff refreshments</span>
+                    </div>
+                    <span className="font-mono font-bold text-stone-900">₹1,750.00</span>
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-[#FAF7EE] border border-[#DDD6C0] flex items-center justify-between text-xs">
-                  <div>
-                    <span className="text-stone-500 text-[10px] uppercase font-mono block">Cash Drawer Balance:</span>
-                    <span className="font-mono font-black text-[#0B3B24] text-sm">₹7,450.00 <span className="text-[10px] text-stone-500 font-normal">/ ₹10,000 Float</span></span>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-stone-500 text-[10px] uppercase font-mono block">Audit Status:</span>
-                    <span className="font-mono font-bold text-[#008726] text-xs">₹0.00 Variance</span>
-                  </div>
-                </div>
-
-                <div className="text-[10.5px] text-stone-500 flex items-center gap-1.5 pt-1">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#008726] shrink-0" />
-                  <span>Receipt photo archived in cloud with timestamp and staff badge ID.</span>
+                {/* Bottom Status */}
+                <div className="p-2.5 rounded-xl bg-[#FAF7EE] border border-[#DDD6C0] flex items-center justify-between text-xs">
+                  <span className="text-stone-600 text-[11px] font-medium">Float Replenishment Status:</span>
+                  <span className="font-mono font-bold text-[#008726] text-xs">₹7,550 Remaining in Drawer</span>
                 </div>
               </div>
             </div>
@@ -319,39 +404,39 @@ export default function ExpensesProductPage() {
           {/* Right: Description */}
           <div className="lg:col-span-6 space-y-3 sm:space-y-4 order-1 lg:order-2">
             <span className="text-xs font-bold uppercase tracking-wider text-[#008726] font-mono">
-              PETTY CASH MANAGEMENT
+              DIRECT EXPENSES &amp; PETTY CASH
             </span>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-[#141414] tracking-tight leading-tight">
-              Snap &amp; record daily <span className="text-[#008726]">petty cash slips</span> in under 5 seconds
+              Track operating expenses, <span className="text-[#008726]">chai, fuel &amp; petty cash</span> vouchers
             </h3>
             <p className="text-stone-600 text-xs sm:text-sm leading-relaxed">
-              Market vegetable runs, ice deliveries, emergency repairs, and courier fees often vanish without trace. Floor managers snap bills directly on their smartphone camera with instant AI total extraction, automated categorization, and cash drawer balance deduction.
+              Record morning market runs, kitchen cylinder refills, and daily staff chai in under 5 seconds. Automatically categorize direct operational costs versus indirect overheads, attach camera proofs, and prevent petty cash drawer leakage with supervisor sign-offs.
             </p>
             <div className="pt-2">
               <Link href="/demo" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0B3B24] hover:text-[#008726] transition-colors">
-                <span>See mobile receipt capture in action</span>
+                <span>Configure petty cash categories &amp; limits</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </div>
         </div>
 
-        {/* Feature 2: Vendor Credit & Payables Schedule */}
+        {/* Showcase 2: Daily Payment Reconciliation (Reflecting Image 1 & 2) */}
         <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Left: Description */}
           <div className="lg:col-span-6 space-y-3 sm:space-y-4">
             <span className="text-xs font-bold uppercase tracking-wider text-[#008726] font-mono">
-              ACCOUNTS PAYABLE &amp; VENDORS
+              DAILY PAYMENT RECONCILIATION
             </span>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-[#141414] tracking-tight leading-tight">
-              Never miss a supplier credit cycle or <span className="text-[#008726]">vendor discount term</span>
+              Cashier drawer count vs <span className="text-[#008726]">POS &amp; Bank UTR</span> reconciliation
             </h3>
             <p className="text-stone-600 text-xs sm:text-sm leading-relaxed">
-              Eliminate vendor payment disputes and late fees. Track unpaid purchase bills, 7/15/30-day supplier credit terms, and cash flow forecasts with WhatsApp settlement vouchers sent straight to distributors.
+              Eliminate midnight cash shortages and uncollected customer UPIs. Tavola cross-verifies physical drawer counts against live POS database totals and bank/UPI gateway statements, providing an itemized 14-point transaction audit trail.
             </p>
             <div className="pt-2">
               <Link href="/demo" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0B3B24] hover:text-[#008726] transition-colors">
-                <span>Explore vendor payment schedules</span>
+                <span>Explore daily reconciliation matrix</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -359,93 +444,150 @@ export default function ExpensesProductPage() {
 
           {/* Right: UI Card Mockup */}
           <div className="lg:col-span-6">
-            <div className="rounded-3xl bg-[#FAF7EE] p-5 sm:p-7 shadow-xl border border-[#DDD6C0] relative overflow-hidden">
+            <div className="rounded-3xl bg-[#FAF7EE] p-4 sm:p-6 shadow-xl border border-[#DDD6C0] relative overflow-hidden">
               <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-stone-200/90 space-y-3">
+                
+                {/* Header */}
                 <div className="flex items-center justify-between pb-2.5 border-b border-stone-200">
-                  <span className="font-bold text-xs text-stone-900 flex items-center gap-1.5">
-                    <Building2 className="w-3.5 h-3.5 text-blue-700" /> Supplier Invoice Payable
-                  </span>
-                  <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-700 text-[10px] font-bold border border-blue-200">
-                    Due in 2 Days
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-lg bg-emerald-50 text-[#008726] flex items-center justify-center">
+                      <Scale className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="font-extrabold text-xs text-stone-900">Daily Payment Reconciliation</div>
+                      <div className="text-[10px] text-stone-500 font-mono">Date: 18-11-2026 • End of Day</div>
+                    </div>
+                  </div>
+                  <span className="px-2 py-0.5 rounded bg-emerald-50 text-[#008726] text-[10px] font-bold border border-emerald-200">
+                    Awaiting Drawer Count
                   </span>
                 </div>
 
-                <div className="p-3 rounded-xl bg-stone-50 border border-stone-200 text-xs space-y-1.5">
-                  <div className="flex justify-between font-bold text-stone-900">
-                    <span>Metro Dairy Farms • Invoice #INV-9902</span>
-                    <span className="font-mono text-base text-stone-900">₹24,800.00</span>
+                {/* Collections Comparison Table (from Screenshot 1) */}
+                <div className="border border-stone-200 rounded-xl overflow-hidden text-xs">
+                  <div className="grid grid-cols-12 bg-stone-50 p-2 font-mono text-[9.5px] font-bold text-stone-500 uppercase border-b border-stone-200">
+                    <div className="col-span-5">Payment Channel</div>
+                    <div className="col-span-4 text-right">POS Recorded</div>
+                    <div className="col-span-3 text-right">Status</div>
                   </div>
-                  <div className="text-[11px] text-stone-600 flex justify-between">
-                    <span>Credit Term: 15 Days</span>
-                    <span className="text-amber-800 font-semibold">Payment Due: Friday</span>
+                  <div className="divide-y divide-stone-100 text-[11px]">
+                    <div className="grid grid-cols-12 p-2 items-center">
+                      <div className="col-span-5 font-semibold text-stone-800 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-emerald-600"></span> Cash Drawer
+                      </div>
+                      <div className="col-span-4 text-right font-mono font-bold text-stone-900">₹1,406.00</div>
+                      <div className="col-span-3 text-right font-bold text-amber-700 text-[10px]">Awaiting Count</div>
+                    </div>
+                    <div className="grid grid-cols-12 p-2 items-center">
+                      <div className="col-span-5 font-semibold text-stone-800 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-blue-600"></span> UPI / QR Settlements
+                      </div>
+                      <div className="col-span-4 text-right font-mono font-bold text-stone-900">₹858.00</div>
+                      <div className="col-span-3 text-right font-bold text-blue-700 text-[10px]">Pending Upload</div>
+                    </div>
+                    <div className="grid grid-cols-12 p-2 items-center">
+                      <div className="col-span-5 font-semibold text-stone-800 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-purple-600"></span> Card / EDC Machine
+                      </div>
+                      <div className="col-span-4 text-right font-mono font-bold text-stone-900">₹0.00</div>
+                      <div className="col-span-3 text-right font-bold text-stone-400 text-[10px]">Zero Inflow</div>
+                    </div>
+                    <div className="grid grid-cols-12 p-2 items-center bg-[#FAF7EE] font-bold text-xs">
+                      <div className="col-span-5 text-[#0B3B24]">TOTAL COLLECTIONS</div>
+                      <div className="col-span-4 text-right font-mono text-[#0B3B24]">₹2,264.00</div>
+                      <div className="col-span-3 text-right text-stone-600 text-[10px]">Audit Ready</div>
+                    </div>
                   </div>
-                  <div className="p-2 rounded-lg bg-emerald-50 border border-emerald-200/80 text-[10.5px] text-[#008726] flex items-center justify-between font-medium">
-                    <span>🎯 Early Settlement Discount:</span>
-                    <span className="font-mono font-bold">Save 2% (-₹496.00) if paid today</span>
+                </div>
+
+                {/* Audit Trail Snippet (from Screenshot 2) */}
+                <div className="p-2 rounded-xl bg-stone-50 border border-stone-200/90 text-[10.5px] space-y-1">
+                  <div className="flex justify-between text-stone-500 font-mono text-[9px] uppercase font-bold">
+                    <span>Transaction Match &amp; Audit Trail</span>
+                    <span>14 Logged</span>
+                  </div>
+                  <div className="flex justify-between font-mono text-stone-700 pt-0.5">
+                    <span>13:01:47 • UPI • System POS</span>
+                    <span className="font-bold text-stone-900">₹450.00</span>
+                  </div>
+                  <div className="flex justify-between font-mono text-stone-700">
+                    <span>10:33:13 • UPI • System POS</span>
+                    <span className="font-bold text-stone-900">₹100.00</span>
+                  </div>
+                  <div className="flex justify-between font-mono text-stone-700">
+                    <span>10:32:16 • CASH • System POS</span>
+                    <span className="font-bold text-stone-900">₹120.00</span>
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between pt-1 text-[11px]">
-                  <span className="text-stone-500 font-mono">Modes: UPI / NEFT / Cheque</span>
-                  <button className="px-3 py-1.5 rounded-lg bg-[#008726] hover:bg-[#007420] text-white font-bold text-[10.5px] cursor-pointer flex items-center gap-1 shadow-2xs">
-                    <span>Generate Settlement Voucher</span>
-                    <ArrowRight className="w-3 h-3" />
-                  </button>
+                  <span className="text-stone-500 font-mono">Audit Action:</span>
+                  <span className="px-3 py-1 rounded-lg bg-[#008726] text-white font-bold text-[10px] cursor-pointer flex items-center gap-1">
+                    <Download className="w-3 h-3" />
+                    <span>Export Excel Audit Report</span>
+                  </span>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
 
-        {/* Feature 3: Real-Time Daily P&L */}
+        {/* Showcase 3: Vendor Invoices & Customer Khata */}
         <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Left: UI Card Mockup */}
           <div className="lg:col-span-6 order-2 lg:order-1">
-            <div className="rounded-3xl bg-[#0B3B24] p-5 sm:p-7 shadow-xl border border-emerald-700/50 relative overflow-hidden">
+            <div className="rounded-3xl bg-[#0B3B24] p-4 sm:p-6 shadow-xl border border-emerald-700/50 relative overflow-hidden">
               <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-stone-200/90 space-y-3">
+                
                 <div className="flex items-center justify-between pb-2.5 border-b border-stone-200">
-                  <span className="font-bold text-xs text-stone-900 flex items-center gap-1.5">
-                    <PieChart className="w-3.5 h-3.5 text-[#008726]" /> Daily Operating Profit &amp; Loss
-                  </span>
-                  <span className="px-2 py-0.5 rounded bg-emerald-50 text-[#008726] text-[10px] font-bold border border-emerald-200">
-                    Live P&amp;L Reconciled
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-lg bg-emerald-50 text-[#008726] flex items-center justify-center">
+                      <Users2 className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="font-extrabold text-xs text-stone-900">Customer Pay Later &amp; Vendor Ledgers</div>
+                      <div className="text-[10px] text-stone-500 font-mono">Khata Dues &amp; Supplier Settlements</div>
+                    </div>
+                  </div>
+                  <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-700 text-[10px] font-bold border border-blue-200">
+                    WhatsApp Sync
                   </span>
                 </div>
 
-                <div className="p-3 rounded-xl bg-stone-50 border border-stone-200 font-mono text-[11px] space-y-1.5 text-stone-700">
-                  <div className="flex justify-between">
-                    <span>1. Gross Sales (POS + Online)</span>
-                    <span className="font-bold text-stone-900">₹94,250.00</span>
+                <div className="p-3 rounded-xl bg-stone-50 border border-stone-200 text-xs space-y-2">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <span className="font-bold text-stone-900 block">Mr. Rajesh Sharma (VIP Corporate Khata)</span>
+                      <span className="text-[10px] text-stone-500 font-mono">Account #KH-8801 • Folio Dues</span>
+                    </div>
+                    <span className="font-mono font-bold text-stone-900 text-sm">₹3,450.00</span>
                   </div>
-                  <div className="flex justify-between text-blue-600">
-                    <span>2. (-) Raw Material Cost (BOM)</span>
-                    <span>-₹28,275.00 (30.0%)</span>
-                  </div>
-                  <div className="flex justify-between text-stone-600">
-                    <span>3. (-) Petty Cash Outflows</span>
-                    <span>-₹4,320.00</span>
-                  </div>
-                  <div className="flex justify-between text-stone-600">
-                    <span>4. (-) Shift Labor &amp; Wages</span>
-                    <span>-₹14,500.00</span>
-                  </div>
-                  <div className="flex justify-between text-stone-600">
-                    <span>5. (-) Utilities &amp; Overheads</span>
-                    <span>-₹6,200.00</span>
-                  </div>
-                  <div className="flex justify-between font-bold text-stone-900 pt-2 border-t border-stone-200 text-xs">
-                    <span>Net Operating Profit:</span>
-                    <span className="text-[#008726] text-sm">₹40,955.00 (43.4%)</span>
+                  <div className="p-2 rounded-lg bg-emerald-50 border border-emerald-200/80 flex items-center justify-between text-[11px] text-[#008726]">
+                    <span>📱 1-Click WhatsApp UPI Payment Link Sent</span>
+                    <span className="font-bold">Active</span>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-1 text-[11px]">
-                  <span className="text-stone-500 font-mono">Format: Tally Prime XML / Excel</span>
-                  <span className="px-3 py-1 rounded-lg bg-[#008726] hover:bg-[#007420] text-white font-bold text-[10px] cursor-pointer flex items-center gap-1">
-                    <Download className="w-3 h-3" />
-                    <span>Export P&amp;L Statement</span>
-                  </span>
+                <div className="p-3 rounded-xl bg-[#FAF7EE] border border-[#DDD6C0] text-xs space-y-1.5">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <span className="font-bold text-[#0B3B24] block">Metro Dairy Farms (Supplier Payment-Out)</span>
+                      <span className="text-[10px] text-stone-600 font-mono">Invoice #INV-9902 • Due in 2 Days</span>
+                    </div>
+                    <span className="font-mono font-bold text-[#0B3B24] text-sm">₹24,800.00</span>
+                  </div>
+                  <div className="text-[10.5px] text-stone-600 flex justify-between">
+                    <span>Credit Window: 15 Days</span>
+                    <span className="text-[#008726] font-bold">Early Discount: Save 2% (-₹496.00)</span>
+                  </div>
                 </div>
+
+                <div className="text-[10.5px] text-stone-500 flex items-center gap-1.5 pt-1">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#008726] shrink-0" />
+                  <span>GSTIN input tax credits auto-validated against GSTR-2B filing sheets.</span>
+                </div>
+
               </div>
             </div>
           </div>
@@ -453,17 +595,17 @@ export default function ExpensesProductPage() {
           {/* Right: Description */}
           <div className="lg:col-span-6 space-y-3 sm:space-y-4 order-1 lg:order-2">
             <span className="text-xs font-bold uppercase tracking-wider text-[#008726] font-mono">
-              DAILY PROFIT &amp; LOSS
+              SETTLEMENTS &amp; CUSTOMER KHATA
             </span>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-[#141414] tracking-tight leading-tight">
-              Real-time <span className="text-[#008726]">daily P&amp;L reports</span> with exact food cost margin
+              Vendor invoices, credit cycles &amp; <span className="text-[#008726]">customer pay later khata</span>
             </h3>
             <p className="text-stone-600 text-xs sm:text-sm leading-relaxed">
-              Calculate your prime costs (Food Cost + Direct Labor) against gross revenue every night. Know your exact net profit before turning off kitchen lights, with zero manual spreadsheet formulas or end-of-month panic.
+              Complete counterpart ledger management. Track raw supplier credit terms with early cash settlement discounts, while offering trusted corporate customers Pay Later dining privileges with automated WhatsApp collection reminders.
             </p>
             <div className="pt-2">
               <Link href="/demo" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0B3B24] hover:text-[#008726] transition-colors">
-                <span>View daily P&amp;L analytics workflow</span>
+                <span>View customer khata &amp; supplier settlement flow</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -473,20 +615,20 @@ export default function ExpensesProductPage() {
       </section>
 
       {/* =========================================================================
-          5. REFINED INTERACTIVE CAPABILITIES MATRIX (Compact & Professional)
+          5. INTERACTIVE PLATFORM MODULES (The 6 Real Modules from Screenshot)
          ========================================================================= */}
-      <section className="py-12 sm:py-16 px-3.5 xs:px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-stone-200/80">
+      <section id="platform-preview" className="py-12 sm:py-16 px-3.5 xs:px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-stone-200/80 scroll-mt-12">
         
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 sm:mb-8">
           <div>
             <span className="text-[11px] font-bold text-[#008726] uppercase tracking-wider font-mono">
-              FINANCIAL MODULES
+              EXPENSES PLATFORM SUITE
             </span>
             <h2 className="text-2xl sm:text-3xl font-black text-[#141414] tracking-tight mt-1">
-              Interactive Financial Operations
+              Explore All 6 Core Financial Modules
             </h2>
             <p className="text-xs sm:text-sm text-stone-600 mt-1 max-w-xl">
-              Inspect how Tavola automates daily cash workflows, vendor credit aging, and tax compliance across your outlets.
+              Click any module below to inspect its operational workflow, live reconciliation metrics, and reporting mechanics.
             </p>
           </div>
 
@@ -498,40 +640,37 @@ export default function ExpensesProductPage() {
           </Link>
         </div>
 
-        {/* 4 Interactive Selector Tabs */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 mb-6">
-          {EXPENSE_CAPABILITIES.map((cap) => {
-            const Icon = cap.icon;
-            const isSelected = activeCapability === cap.key;
+        {/* 6 Interactive Selector Pills (from Screenshot) */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 mb-6">
+          {PLATFORM_MODULES.map((mod) => {
+            const isSelected = activeModule === mod.key;
             return (
               <button
-                key={cap.key}
-                onClick={() => setActiveCapability(cap.key)}
-                className={`p-3.5 sm:p-4 rounded-2xl text-left transition-all border cursor-pointer touch-manipulation ${
+                key={mod.key}
+                onClick={() => setActiveModule(mod.key)}
+                className={`p-3 rounded-2xl text-left transition-all border cursor-pointer touch-manipulation ${
                   isSelected
-                    ? 'bg-[#0B3B24] text-white border-[#0B3B24] shadow-md'
+                    ? 'bg-[#008726] text-white border-[#008726] shadow-sm'
                     : 'bg-white hover:bg-stone-50 text-stone-800 border-stone-200 shadow-2xs'
                 }`}
               >
-                <div className="flex items-center justify-between mb-2">
-                  <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${
-                    isSelected ? 'bg-white/15 text-white' : 'bg-emerald-50 text-[#008726]'
+                <div className="flex items-center justify-between mb-1">
+                  <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded font-mono ${
+                    isSelected ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-600'
                   }`}>
-                    <Icon className="w-4 h-4" />
-                  </div>
-                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                    isSelected ? 'bg-[#BCE440] text-[#0B3B24]' : 'bg-stone-100 text-stone-600'
-                  }`}>
-                    {cap.badge}
+                    {mod.badge}
                   </span>
                 </div>
-                <div className="font-extrabold text-xs sm:text-sm tracking-tight">{cap.label}</div>
+                <div className="font-extrabold text-xs tracking-tight truncate">{mod.label}</div>
+                <div className={`text-[10px] truncate mt-0.5 ${isSelected ? 'text-emerald-100' : 'text-stone-500'}`}>
+                  {mod.sub}
+                </div>
               </button>
             );
           })}
         </div>
 
-        {/* Selected Capability Details Canvas */}
+        {/* Selected Module Details Canvas */}
         <div className="bg-white rounded-3xl border border-stone-200 shadow-sm p-5 sm:p-8">
           <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 items-start">
             
@@ -539,22 +678,25 @@ export default function ExpensesProductPage() {
             <div className="lg:col-span-7 space-y-4">
               <div>
                 <span className="text-[11px] font-bold text-[#008726] font-mono uppercase tracking-wider">
-                  MODULE SPECIFICATION
+                  ACTIVE PLATFORM CAPABILITY
                 </span>
                 <h3 className="text-xl sm:text-2xl font-black text-[#141414] tracking-tight mt-1">
-                  {currentCapability.title}
+                  {currentModule.title}
                 </h3>
+                <p className="text-xs text-stone-500 font-mono mt-0.5">
+                  {currentModule.subtitle}
+                </p>
                 <p className="text-xs sm:text-sm text-stone-600 mt-2 leading-relaxed">
-                  {currentCapability.description}
+                  {currentModule.description}
                 </p>
               </div>
 
               <div className="pt-2 space-y-2.5">
                 <div className="text-xs font-bold text-stone-900 uppercase tracking-wider font-mono">
-                  Standard Financial Workflow:
+                  Standard Automation Workflow:
                 </div>
                 <div className="space-y-2">
-                  {currentCapability.steps.map((step, idx) => (
+                  {currentModule.workflow.map((step, idx) => (
                     <div key={idx} className="flex items-start gap-2.5 text-xs text-stone-700 bg-stone-50 p-2.5 rounded-xl border border-stone-100">
                       <span className="w-5 h-5 rounded-full bg-[#0B3B24] text-white text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">
                         {idx + 1}
@@ -573,7 +715,7 @@ export default function ExpensesProductPage() {
               </div>
 
               <div className="space-y-3">
-                {currentCapability.kpis.map((kpi, i) => (
+                {currentModule.kpis.map((kpi, i) => (
                   <div key={i} className="bg-white p-3.5 rounded-xl border border-stone-200">
                     <span className="text-[10px] font-bold text-stone-400 uppercase tracking-wider font-mono block">
                       {kpi.label}
@@ -647,7 +789,7 @@ export default function ExpensesProductPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {EXPENSE_SPECS.map((group, idx) => (
+          {TECHNICAL_SPECIFICATIONS.map((group, idx) => (
             <div key={idx} className="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-2xs">
               <div className="px-4 py-3 bg-[#FAF7EE] border-b border-stone-200 font-bold text-xs text-[#0B3B24] font-mono uppercase tracking-wider">
                 {group.title}
